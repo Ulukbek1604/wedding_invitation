@@ -663,93 +663,6 @@ section { position: relative; }
   </section>
 
 
-  <!-- Анкета -->
-  <section class="block" id="rsvp" aria-labelledby="rsvp-h">
-    <div class="wrap">
-      <div class="card reveal">
-        <div class="sprig orn" data-orn="sprig" data-seed="10" aria-hidden="true"></div>
-        <p class="eyebrow">RSVP</p>
-        <h2 class="h2" id="rsvp-h">Анкета гостя</h2>
-        <p class="rsvp-note" data-fill="rsvp-note"></p>
-
-        <form class="form" id="rsvp-form" novalidate>
-          <div class="err-summary" id="err-summary" tabindex="-1" hidden>
-            <p class="err-summary__title" id="err-summary-title">Пожалуйста, проверьте анкету:</p>
-            <ul id="err-list"></ul>
-          </div>
-
-          <div class="field" id="f-name">
-            <label for="name">Ваше имя и фамилия</label>
-            <input class="input" id="name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Например, Анна Иванова" aria-describedby="name-err" required>
-            <p class="err" id="name-err" hidden></p>
-          </div>
-
-          <fieldset class="field" id="f-attend" aria-describedby="attend-err">
-            <legend>Сможете ли вы прийти?</legend>
-            <div class="choices">
-              <label class="choice">
-                <input type="radio" name="attend" value="yes" id="attend-yes">
-                <span class="choice__box"><span class="choice__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>С радостью приду</span>
-              </label>
-              <label class="choice">
-                <input type="radio" name="attend" value="no" id="attend-no">
-                <span class="choice__box"><span class="choice__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>К сожалению, не смогу</span>
-              </label>
-            </div>
-            <p class="err" id="attend-err" hidden></p>
-          </fieldset>
-
-          <div class="field" id="f-guests" hidden>
-            <label for="guests">Сколько гостей, включая вас?</label>
-            <div class="stepper">
-              <button type="button" class="step-btn" data-step="-1" aria-label="Уменьшить число гостей" aria-controls="guests">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"/></svg>
-              </button>
-              <input class="input" id="guests" name="guests" type="number" inputmode="numeric" min="1" max="10" value="1" aria-describedby="guests-help guests-err">
-              <button type="button" class="step-btn" data-step="1" aria-label="Увеличить число гостей" aria-controls="guests">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-              </button>
-            </div>
-            <p class="help" id="guests-help">Если придёте с парой или детьми — укажите общее число</p>
-            <p class="err" id="guests-err" hidden></p>
-          </div>
-
-          <div class="field" id="f-wishes">
-            <label for="wishes">Пожелания <span class="opt">(необязательно)</span></label>
-            <textarea class="textarea" id="wishes" name="wishes" rows="4" maxlength="500" placeholder="Аллергии, любимая песня для танцпола или тёплые слова" aria-describedby="wishes-count"></textarea>
-            <p class="help help--right" id="wishes-count"><span id="wishes-n">0</span> / 500</p>
-          </div>
-
-          <button type="submit" class="btn btn--primary btn--block" id="rsvp-submit">
-            <span id="submit-label">Отправить ответ</span>
-          </button>
-        </form>
-
-        <div class="done" id="rsvp-done" tabindex="-1" hidden aria-live="polite">
-          <svg class="done__icon" viewBox="0 0 84 84" aria-hidden="true">
-            <g filter="url(#wc)"><circle cx="42" cy="42" r="34" class="pt3"/></g>
-            <path d="M42 62S24 51 24 38a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 13-18 24-18 24Z" fill="#a4505a"/>
-            <path d="M14 30c4-8 10-11 16-10-3 4-8 8-16 10Z" class="lf2"/>
-            <path d="M70 56c-4 7-9 10-15 9 3-4 7-7 15-9Z" class="lf1"/>
-          </svg>
-          <h3 class="done__title" id="done-title">Спасибо!</h3>
-          <p class="done__text" id="done-text"></p>
-          <ul class="done__summary" id="done-summary"></ul>
-          <div class="btn-row">
-            <a class="btn btn--primary" id="wa-link" href="#" target="_blank" rel="noopener" hidden>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 18.8L4 20Z"/><path d="M9.2 9.3c.3 2.2 2.2 4.4 4.6 5.3l1.2-1.1 1.8.9c-.3 1.2-1.4 1.9-2.6 1.7-3.4-.6-6.2-3.4-6.8-6.8-.2-1.2.5-2.3 1.7-2.6l.9 1.8-1 .8Z"/></svg>
-              Отправить в WhatsApp
-            </a>
-            <button type="button" class="btn btn--ghost" id="rsvp-edit">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg>
-              Изменить ответ
-            </button>
-          </div>
-          <p class="help" id="saved-note">Ответ сохранён на этом устройстве</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Финал -->
   <section class="finale" aria-labelledby="finale-h">
@@ -791,12 +704,7 @@ const CONFIG = {
     { time: "16:00", title: "Сбор гостей", icon: "guests" },
     { time: "17:00", title: "Начало торжества", icon: "rings" },
     { time: "23:00", title: "Завершение вечера", icon: "moon" }
-  ],
-  // текст под заголовком анкеты
-  rsvpNote: "Пожалуйста, подтвердите своё присутствие до 20 сентября 2026 года",
-  // номер WhatsApp для ответов гостей, только цифры, например "996700123456";
-  // если оставить пустым, кнопка «Отправить в WhatsApp» не появится
-  whatsapp: ""
+  ]
 };
 
 (function () {
@@ -929,11 +837,9 @@ const CONFIG = {
     "venue": CONFIG.venue,
     "address": CONFIG.address,
     "city": CONFIG.city,
-    "rsvp-note": CONFIG.rsvpNote,
     "footer": `${parts.day}.${parts.month}.${parts.year} · ${CONFIG.city}`
   };
   $$("[data-fill]").forEach((el) => { const v = fills[el.dataset.fill]; if (v != null) el.textContent = v; });
-  if (!CONFIG.rsvpNote) $(".rsvp-note").hidden = true;
   $(".hero__date").setAttribute("aria-label", `${d} ${monthGen} ${y}, ${parts.weekday}`);
 
   // мини-календарь месяца (неделя с понедельника)
@@ -1033,171 +939,6 @@ const CONFIG = {
     setTimeout(() => $$(".reveal.pre").forEach((el) => el.classList.remove("pre")), 4000);
   }
 
-  /* ---------- анкета ---------- */
-  const form = $("#rsvp-form");
-  const done = $("#rsvp-done");
-  const nameI = $("#name"), guestsI = $("#guests"), wishesI = $("#wishes");
-  const fGuests = $("#f-guests");
-  const KEY = "rsvp-garden-" + CONFIG.groom + "-" + CONFIG.bride;
-  const touched = {};
-  const errIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/></svg>';
-
-  const attendVal = () => { const c = $('input[name="attend"]:checked'); return c ? c.value : ""; };
-
-  function rules() {
-    const errs = {};
-    const nm = nameI.value.trim();
-    if (!nm) errs.name = "Пожалуйста, укажите ваше имя";
-    else if (nm.length < 2) errs.name = "Имя слишком короткое — напишите, пожалуйста, полностью";
-    if (!attendVal()) errs.attend = "Выберите, сможете ли вы прийти";
-    if (attendVal() === "yes") {
-      const g = Number(guestsI.value);
-      if (!guestsI.value || !Number.isInteger(g) || g < 1 || g > 10) errs.guests = "Укажите число гостей от 1 до 10";
-    }
-    return errs;
-  }
-  const fieldMap = {
-    name: { box: "#f-name", err: "#name-err", focus: () => nameI },
-    attend: { box: "#f-attend", err: "#attend-err", focus: () => $("#attend-yes") },
-    guests: { box: "#f-guests", err: "#guests-err", focus: () => guestsI }
-  };
-  function showErr(key, msg) {
-    const f = fieldMap[key]; const box = $(f.box), err = $(f.err);
-    box.classList.toggle("is-invalid", !!msg);
-    err.hidden = !msg;
-    err.innerHTML = msg ? errIcon + "<span></span>" : "";
-    if (msg) err.lastChild.textContent = msg;
-    const input = f.focus();
-    if (key === "attend") $$('input[name="attend"]').forEach((r) => r.setAttribute("aria-invalid", msg ? "true" : "false"));
-    else input.setAttribute("aria-invalid", msg ? "true" : "false");
-  }
-  function validateField(key) { const e = rules(); showErr(key, e[key]); refreshSummary(e); return !e[key]; }
-  function refreshSummary(e) {
-    const sum = $("#err-summary");
-    if (sum.hidden) return;
-    const keys = Object.keys(e);
-    if (!keys.length) { sum.hidden = true; return; }
-    fillSummary(e);
-  }
-  function fillSummary(e) {
-    const list = $("#err-list"); list.innerHTML = "";
-    Object.keys(e).forEach((k) => {
-      const li = document.createElement("li"); const a = document.createElement("a");
-      a.href = "#"; a.textContent = e[k];
-      a.addEventListener("click", (ev) => { ev.preventDefault(); const el = fieldMap[k].focus(); el.focus(); el.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" }); });
-      li.append(a); list.append(li);
-    });
-  }
-
-  nameI.addEventListener("blur", () => { touched.name = true; validateField("name"); });
-  nameI.addEventListener("input", () => { if (touched.name) validateField("name"); });
-  guestsI.addEventListener("blur", () => { touched.guests = true; validateField("guests"); });
-  guestsI.addEventListener("input", () => { syncStep(); if (touched.guests) validateField("guests"); });
-
-  function syncGuests(animate) {
-    const yes = attendVal() === "yes";
-    const wasHidden = fGuests.hidden;
-    fGuests.hidden = !yes;
-    if (yes && wasHidden && animate && !reduceMotion) { fGuests.classList.remove("reveal-field"); void fGuests.offsetWidth; fGuests.classList.add("reveal-field"); }
-    if (!yes) showErr("guests", "");
-  }
-  $$('input[name="attend"]').forEach((r) => r.addEventListener("change", () => { syncGuests(true); validateField("attend"); }));
-
-  function syncStep() {
-    const g = Number(guestsI.value) || 0;
-    $('[data-step="-1"]').disabled = g <= 1;
-    $('[data-step="1"]').disabled = g >= 10;
-  }
-  $$("[data-step]").forEach((b) => b.addEventListener("click", () => {
-    const g = Math.min(10, Math.max(1, (Number(guestsI.value) || 1) + Number(b.dataset.step)));
-    guestsI.value = g; syncStep(); if (touched.guests) validateField("guests");
-  }));
-  syncStep();
-
-  wishesI.addEventListener("input", () => { $("#wishes-n").textContent = wishesI.value.length; });
-
-  function load() { try { const raw = localStorage.getItem(KEY); return raw ? JSON.parse(raw) : null; } catch (e) { return null; } }
-  function save(data) { try { localStorage.setItem(KEY, JSON.stringify(data)); return true; } catch (e) { return false; } }
-
-  function guestsWord(n) { return n + " " + plural(n, ["гость", "гостя", "гостей"]); }
-
-  function showDone(data, focus) {
-    form.hidden = true; done.hidden = false;
-    const first = data.name.split(/\s+/)[0];
-    if (data.attend === "yes") {
-      $("#done-title").textContent = `Спасибо, ${first}!`;
-      $("#done-text").textContent = `Мы очень ждём вас ${d} ${monthGen} в ${time}. До встречи в саду нашего праздника!`;
-    } else {
-      $("#done-title").textContent = "Спасибо, что ответили";
-      $("#done-text").textContent = `${first}, нам будет вас не хватать. Мы обязательно поднимем бокал за вас!`;
-    }
-    const rows = [["Имя", data.name], ["Ответ", data.attend === "yes" ? "Приду" : "Не смогу прийти"]];
-    if (data.attend === "yes") rows.push(["Гостей", guestsWord(data.guests)]);
-    if (data.wishes) rows.push(["Пожелания", data.wishes]);
-    const ul = $("#done-summary"); ul.innerHTML = "";
-    rows.forEach(([k, v]) => { const li = document.createElement("li"); const b = document.createElement("b"); const s = document.createElement("span"); b.textContent = k; s.textContent = v; li.append(b, s); ul.append(li); });
-
-    const wa = $("#wa-link");
-    const digits = String(CONFIG.whatsapp || "").replace(/\D/g, "");
-    if (digits) {
-      const lines = [`Ответ на приглашение (${CONFIG.groom} и ${CONFIG.bride}, ${dots.replace(/ · /g, ".")})`].concat(rows.map(([k, v]) => `${k}: ${v}`));
-      wa.href = "https://wa.me/" + digits + "?text=" + encodeURIComponent(lines.join("\n"));
-      wa.hidden = false;
-      $("#saved-note").textContent = "Нажмите «Отправить в WhatsApp», чтобы ответ дошёл до нас";
-    } else {
-      wa.hidden = true;
-      $("#saved-note").textContent = data.saved === false ? "" : "Ответ сохранён на этом устройстве";
-    }
-    if (focus) done.focus({ preventScroll: false });
-  }
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const errs = rules();
-    Object.keys(fieldMap).forEach((k) => { touched[k] = true; showErr(k, errs[k]); });
-    const sum = $("#err-summary");
-    if (Object.keys(errs).length) {
-      fillSummary(errs);
-      sum.hidden = false;
-      sum.focus({ preventScroll: true });
-      sum.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
-      return;
-    }
-    sum.hidden = true;
-    const btn = $("#rsvp-submit");
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner" aria-hidden="true"></span><span>Сохраняем…</span>';
-    const data = {
-      name: nameI.value.trim(),
-      attend: attendVal(),
-      guests: attendVal() === "yes" ? Number(guestsI.value) : 0,
-      wishes: wishesI.value.trim(),
-      at: new Date().toISOString()
-    };
-    setTimeout(() => {
-      data.saved = save(data);
-      btn.disabled = false;
-      btn.innerHTML = '<span id="submit-label">Отправить ответ</span>';
-      showDone(data, true);
-    }, reduceMotion ? 0 : 600);
-  });
-
-  $("#rsvp-edit").addEventListener("click", () => {
-    const data = load();
-    if (data) {
-      nameI.value = data.name || "";
-      const r = $(`input[name="attend"][value="${data.attend}"]`); if (r) r.checked = true;
-      guestsI.value = data.guests || 1;
-      wishesI.value = data.wishes || "";
-      $("#wishes-n").textContent = wishesI.value.length;
-    }
-    syncGuests(false); syncStep();
-    done.hidden = true; form.hidden = false;
-    nameI.focus();
-  });
-
-  const saved = load();
-  if (saved && saved.name && saved.attend) showDone(saved, false);
 })();
 </script>
 </body>

@@ -487,62 +487,6 @@ fieldset[aria-invalid="true"] .choice span { box-shadow: inset 0 0 0 1px var(--e
   </section>
 
 
-  <section class="sec" id="rsvp" aria-labelledby="rsvp-h" style="padding-top:0">
-    <div class="wrap sec-grid">
-      <div class="sec-head">
-        <h2 class="h2" id="rsvp-h">Анкета гостя</h2>
-        <p class="rsvp-note" data-bind="rsvp-note"></p>
-      </div>
-      <div class="sec-body">
-        <div class="reply" id="reply">
-          <form id="rsvp-form" novalidate>
-            <div class="field" style="margin-top:0">
-              <label for="f-name">Ваше имя и фамилия</label>
-              <input class="input" id="f-name" name="name" type="text" autocomplete="name" placeholder="Например, Анна Иванова" aria-describedby="e-name">
-              <p class="err" id="e-name" hidden></p>
-            </div>
-            <fieldset class="field" id="attend-set" aria-describedby="e-attend">
-              <legend>Сможете ли вы прийти?</legend>
-              <div class="choices">
-                <label class="choice"><input type="radio" name="attend" value="yes"><span>Приду с радостью</span></label>
-                <label class="choice"><input type="radio" name="attend" value="no"><span>К сожалению, не смогу</span></label>
-              </div>
-              <p class="err" id="e-attend" hidden></p>
-            </fieldset>
-            <div class="field" id="guests-field">
-              <label for="f-count">Сколько вас будет, включая вас</label>
-              <div class="stepper">
-                <button type="button" id="minus" aria-label="Меньше гостей"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10"/></svg></button>
-                <input id="f-count" name="count" type="number" inputmode="numeric" min="1" max="10" value="1" aria-describedby="e-count">
-                <button type="button" id="plus" aria-label="Больше гостей"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 8h10M8 3v10"/></svg></button>
-              </div>
-              <p class="err" id="e-count" hidden></p>
-            </div>
-            <div class="field">
-              <label for="f-note">Пожелания <span style="font-weight:400;color:var(--ink-2)">— по желанию</span></label>
-              <textarea class="input" id="f-note" name="note" rows="3" placeholder="Аллергии, любимая песня или тёплые слова"></textarea>
-            </div>
-            <div class="submit-row">
-              <button class="btn" type="submit">Отправить ответ</button>
-            </div>
-          </form>
-
-          <div class="thanks" id="thanks" hidden tabindex="-1">
-            <h3>Спасибо!</h3>
-            <p id="thanks-text"></p>
-            <div class="summary" id="thanks-summary"></div>
-            <div class="actions">
-              <a class="btn" id="wa-link" href="#" target="_blank" rel="noopener" hidden>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 19.5 5.6 16A8 8 0 1 1 8.4 18.6Z"/><path d="M9.2 8.8c0 3 2.6 5.9 5.8 6.2l1.2-1.4-1.8-1-1 .8a4.6 4.6 0 0 1-2.4-2.4l.8-1-1-1.8Z" stroke-width="1.2"/></svg>
-                Отправить в WhatsApp
-              </a>
-              <button class="btn btn-quiet" type="button" id="edit-answer">Изменить ответ</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="finale" aria-labelledby="finale-h">
     <div class="wrap finale-grid">
@@ -580,12 +524,7 @@ const CONFIG = {
     { time: "16:00", title: "Сбор гостей" },
     { time: "17:00", title: "Начало торжества" },
     { time: "23:00", title: "Завершение вечера" }
-  ],
-  // текст под заголовком анкеты
-  rsvpNote: "Пожалуйста, подтвердите своё присутствие до 1 сентября",
-  // номер WhatsApp для ответов гостей, только цифры, например "996700123456".
-  // Если оставить пустым, кнопка WhatsApp не появится.
-  whatsapp: ""
+  ]
 };
 </script>
 
@@ -634,11 +573,9 @@ const CONFIG = {
     "venue": CONFIG.venue,
     "address": CONFIG.address,
     "city": CONFIG.city,
-    "rsvp-note": CONFIG.rsvpNote,
     "colophon": `${dd}.${mm}.${yyyy} · ${CONFIG.city}`
   };
   $$("[data-bind]").forEach((el) => { const v = binds[el.dataset.bind]; if (v != null) el.textContent = v; });
-  if (!CONFIG.rsvpNote) $(".rsvp-note").hidden = true;
 
   // ссылки на карты
   $("#map-link").href = CONFIG.map2gis || CONFIG.mapGoogle;
@@ -743,106 +680,6 @@ const CONFIG = {
     const iv = setInterval(() => { if (!tick()) clearInterval(iv); }, 1000);
   }
 
-  /* ---------- анкета гостя ---------- */
-  const form = $("#rsvp-form"), thanks = $("#thanks"), reply = $("#reply");
-  const guestsField = $("#guests-field"), count = $("#f-count");
-  const KEY = "rsvp-" + CONFIG.groom + "-" + CONFIG.bride;
-  const ERR_ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.6v4.2M8 11.2v.2"/></svg>';
-
-  function setErr(id, target, msg) {
-    const el = $("#" + id);
-    if (msg) { el.innerHTML = ERR_ICON; el.append(document.createTextNode(msg)); el.hidden = false; target.setAttribute("aria-invalid", "true"); }
-    else { el.hidden = true; el.textContent = ""; target.removeAttribute("aria-invalid"); }
-  }
-  const clamp = (n) => Math.min(10, Math.max(1, n));
-  function syncStepper() {
-    const n = parseInt(count.value, 10);
-    $("#minus").disabled = !(n > 1);
-    $("#plus").disabled = !(n < 10);
-  }
-  $("#minus").addEventListener("click", () => { count.value = clamp((parseInt(count.value, 10) || 1) - 1); syncStepper(); setErr("e-count", count, ""); });
-  $("#plus").addEventListener("click", () => { count.value = clamp((parseInt(count.value, 10) || 0) + 1); syncStepper(); setErr("e-count", count, ""); });
-  count.addEventListener("input", syncStepper);
-  syncStepper();
-
-  function syncAttend() {
-    const v = form.attend.value;
-    guestsField.hidden = v === "no";
-    if (v) setErr("e-attend", $("#attend-set"), "");
-  }
-  form.addEventListener("change", syncAttend);
-  form.name.addEventListener("input", () => { if (form.name.value.trim()) setErr("e-name", form.name, ""); });
-
-  function showThanks(a, animate) {
-    form.hidden = true; thanks.hidden = false;
-    reply.classList.toggle("sent", !!animate);
-    $("#thanks-text").textContent = a.attend === "yes"
-      ? `${a.name}, мы очень ждём вас! Ваш ответ сохранён.`
-      : `${a.name}, жаль, что не получится. Спасибо, что сообщили.`;
-    const sum = $("#thanks-summary"); sum.textContent = "";
-    const row = (k, v) => { const p = document.createElement("p"); p.append(k + " "); const b = document.createElement("b"); b.textContent = v; p.append(b); sum.append(p); };
-    row("Ответ:", a.attend === "yes" ? "приду" : "не смогу");
-    if (a.attend === "yes") row("Гостей:", String(a.count));
-    if (a.note) row("Пожелания:", a.note);
-
-    const wa = $("#wa-link");
-    const digits = String(CONFIG.whatsapp || "").replace(/\D/g, "");
-    if (digits) {
-      const lines = [
-        `Ответ на приглашение (${couple}, ${dd}.${mm}.${yyyy})`,
-        `Имя: ${a.name}`,
-        `Приду: ${a.attend === "yes" ? "да" : "нет"}`
-      ];
-      if (a.attend === "yes") lines.push(`Количество гостей: ${a.count}`);
-      if (a.note) lines.push(`Пожелания: ${a.note}`);
-      wa.href = "https://wa.me/" + digits + "?text=" + encodeURIComponent(lines.join("\n"));
-      wa.hidden = false;
-      $("#thanks-text").textContent += " Отправьте его нам в WhatsApp — так мы точно его получим.";
-    } else {
-      wa.hidden = true;
-    }
-  }
-
-  form.addEventListener("submit", (ev) => {
-    ev.preventDefault();
-    const a = {
-      name: form.name.value.trim(),
-      attend: form.attend.value,
-      count: clamp(parseInt(count.value, 10) || 1),
-      note: form.note.value.trim()
-    };
-    let first = null;
-    if (!a.name) { setErr("e-name", form.name, "Напишите, пожалуйста, ваше имя — так мы узнаем, кто ответил."); first = first || form.name; }
-    else setErr("e-name", form.name, "");
-    if (!a.attend) { setErr("e-attend", $("#attend-set"), "Отметьте, сможете ли вы прийти."); first = first || form.querySelector('input[name="attend"]'); }
-    else setErr("e-attend", $("#attend-set"), "");
-    const rawCount = parseInt(count.value, 10);
-    if (a.attend === "yes" && !(rawCount >= 1 && rawCount <= 10)) { setErr("e-count", count, "Укажите число гостей от 1 до 10."); first = first || count; }
-    else setErr("e-count", count, "");
-    if (first) { first.focus(); return; }
-    if (a.attend === "no") a.count = 0;
-    try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (x) { /* хранилище недоступно — ничего страшного */ }
-    showThanks(a, true);
-    thanks.focus({ preventScroll: true });
-    reply.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
-  });
-
-  $("#edit-answer").addEventListener("click", () => {
-    thanks.hidden = true; form.hidden = false; reply.classList.remove("sent");
-    form.name.focus();
-  });
-
-  try {
-    const saved = JSON.parse(localStorage.getItem(KEY) || "null");
-    if (saved && saved.name) {
-      form.name.value = saved.name;
-      const r = form.querySelector(`input[name="attend"][value="${saved.attend}"]`); if (r) r.checked = true;
-      count.value = saved.count > 0 ? saved.count : 1; syncStepper();
-      form.note.value = saved.note || "";
-      guestsField.hidden = saved.attend === "no";
-      showThanks(saved, false);
-    }
-  } catch (x) { /* нет доступа к хранилищу */ }
 })();
 </script>
 </body>

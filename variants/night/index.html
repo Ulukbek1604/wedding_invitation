@@ -536,51 +536,6 @@ body.lit .names__b.foil { animation-delay: .25s; }
   </section>
 
 
-  <section class="section rsvp" id="rsvp" aria-labelledby="rsvp-h">
-    <div class="wrap">
-      <div class="rsvp__panel">
-        <h2 class="h-sec" id="rsvp-h">Анкета гостя</h2>
-        <p class="rsvp__note" data-bind="rsvp-note"></p>
-
-        <form id="rsvp-form" novalidate>
-          <div class="field">
-            <label for="guest-name">Ваше имя и фамилия</label>
-            <input type="text" id="guest-name" name="name" autocomplete="name" placeholder="Например, Айгерим Садыкова">
-          </div>
-          <fieldset class="field">
-            <legend>Сможете ли вы прийти?</legend>
-            <div class="choices">
-              <label class="choice"><input type="radio" name="attend" value="yes"><span>Да, с радостью приду</span></label>
-              <label class="choice"><input type="radio" name="attend" value="no"><span>К сожалению, не смогу</span></label>
-            </div>
-          </fieldset>
-          <div class="field" id="guests-field">
-            <label for="guest-count">Сколько вас будет</label>
-            <select id="guest-count" name="count">
-              <option value="1">Только я</option>
-              <option value="2">Нас двое</option>
-              <option value="3">3 человека</option>
-              <option value="4">4 человека</option>
-              <option value="5">5 человек</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="guest-note">Пожелания или вопросы</label>
-            <textarea id="guest-note" name="note" placeholder="Например, не пью алкоголь"></textarea>
-          </div>
-          <p class="form-error" id="form-error" role="alert"></p>
-          <button class="btn btn--gold" type="submit">Отправить ответ</button>
-        </form>
-
-        <div class="thanks" id="thanks" hidden>
-          <h3 class="foil">Спасибо!</h3>
-          <p id="thanks-text">Мы получили ваш ответ.</p>
-          <a class="btn btn--gold" id="wa-link" href="#" target="_blank" rel="noopener" hidden>Отправить в WhatsApp</a>
-          <button class="textlink" id="edit-answer" type="button">Изменить ответ</button>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section class="finale" aria-labelledby="finale-h">
     <div class="wrap">
@@ -615,12 +570,7 @@ const CONFIG = {
     { time: "16:00", title: "Сбор гостей" },
     { time: "17:00", title: "Начало торжества" },
     { time: "23:00", title: "Завершение вечера" }
-  ],
-  // подпись к анкете
-  rsvpNote: "Пожалуйста, подтвердите своё присутствие до 1 сентября",
-  // номер WhatsApp для ответов гостей, только цифры, например "996700123456"
-  // если оставить пустым, кнопка WhatsApp не появится
-  whatsapp: ""
+  ]
 };
 </script>
 
@@ -665,7 +615,6 @@ const CONFIG = {
     "venue": CONFIG.venue,
     "address": CONFIG.address,
     "city": CONFIG.city,
-    "rsvp-note": CONFIG.rsvpNote,
     "footer": `${dots}, ${CONFIG.city}`
   };
   $$("[data-bind]").forEach((el) => { const k = el.dataset.bind; if (k in binds) el.textContent = binds[k]; });
@@ -820,63 +769,6 @@ const CONFIG = {
   }
   if (tick()) { const iv = setInterval(() => { if (!tick()) clearInterval(iv); }, 1000); }
 
-  /* ---------- анкета гостя ---------- */
-  const form = $("#rsvp-form"), thanks = $("#thanks"), err = $("#form-error");
-  const fName = form.elements["name"], fCount = form.elements["count"], fNote = form.elements["note"];
-  const guestsField = $("#guests-field");
-  const attendVal = () => { const r = form.querySelector('input[name="attend"]:checked'); return r ? r.value : ""; };
-  form.addEventListener("change", () => { guestsField.hidden = attendVal() === "no"; });
-  fName.addEventListener("input", () => { if (fName.value.trim()) fName.removeAttribute("aria-invalid"); });
-
-  const KEY = "rsvp-night-" + CONFIG.groom + "-" + CONFIG.bride;
-  function showThanks(a) {
-    form.hidden = true; thanks.hidden = false;
-    const txt = $("#thanks-text");
-    txt.textContent = a.attend === "yes"
-      ? `${a.name}, мы очень ждём вас!`
-      : `${a.name}, жаль, что не получится. Спасибо, что сообщили.`;
-    const wa = $("#wa-link");
-    const digits = String(CONFIG.whatsapp || "").replace(/\D/g, "");
-    if (digits) {
-      const lines = [
-        `Ответ на приглашение (${namesPlain})`,
-        `Имя: ${a.name}`,
-        `Приду: ${a.attend === "yes" ? "да" : "нет"}`
-      ];
-      if (a.attend === "yes") lines.push(`Количество гостей: ${a.count}`);
-      if (a.note) lines.push(`Пожелания: ${a.note}`);
-      wa.href = "https://wa.me/" + digits + "?text=" + encodeURIComponent(lines.join("\n"));
-      wa.hidden = false;
-      txt.textContent += " Нажмите кнопку ниже, чтобы отправить ответ нам в WhatsApp.";
-    } else wa.hidden = true;
-  }
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const a = { name: fName.value.trim(), attend: attendVal(), count: fCount.value, note: fNote.value.trim() };
-    if (!a.name) {
-      err.textContent = "Напишите, пожалуйста, ваше имя.";
-      fName.setAttribute("aria-invalid", "true"); fName.focus(); return;
-    }
-    if (!a.attend) {
-      err.textContent = "Отметьте, сможете ли вы прийти.";
-      form.querySelector('input[name="attend"]').focus(); return;
-    }
-    err.textContent = "";
-    try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (x) { /* хранилище недоступно */ }
-    showThanks(a);
-    $("#rsvp").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-  });
-  $("#edit-answer").addEventListener("click", () => { thanks.hidden = true; form.hidden = false; fName.focus(); });
-  try {
-    const saved = JSON.parse(localStorage.getItem(KEY) || "null");
-    if (saved && saved.name) {
-      fName.value = saved.name;
-      const r = form.querySelector(`input[name="attend"][value="${saved.attend === "no" ? "no" : "yes"}"]`); if (r) r.checked = true;
-      fCount.value = saved.count || "1"; fNote.value = saved.note || "";
-      guestsField.hidden = saved.attend === "no";
-      showThanks(saved);
-    }
-  } catch (x) { /* нет сохранённого ответа */ }
 })();
 </script>
 </body>
