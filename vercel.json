@@ -1,0 +1,9 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/night", "destination": "/variants/night/index.html" },
+    { "source": "/garden", "destination": "/variants/garden/index.html" },
+    { "source": "/paper", "destination": "/variants/paper/index.html" }
+  ]
+}
