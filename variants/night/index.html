@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Александр и Вера</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Приглашение на свадьбу Александра и Веры, 7 октября 2026, ресторан «Frunze», Бишкек.">
+<meta name="theme-color" content="#120b19">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Tenor+Sans&family=Pinyon+Script&display=swap">
+<style>
+/*
+  «Ночной сад / вечерняя свеча»
+  Палитра: чернильная слива → ночная хвоя, воск свечи для текста, старое золото для фольги.
+  Шрифты: Playfair Display — дидона для крупных строк; Tenor Sans — тихий текст;
+  Pinyon Script — только для латинской фразы «Save the date».
+  Одна главная сцена: на тёмном экране зажигается свеча, свет заполняет экран,
+  и имена проступают золотой фольгой.
+*/
+:root {
+  color-scheme: dark;
+  --ink: #120b19;        /* чернильная слива: фон */
+  --plum: #241430;       /* слива: панели */
+  --forest: #0d1c18;     /* ночная хвоя: низ страницы */
+  --wax: #f1e5c9;        /* воск: основной текст */
+  --wax-dim: #c4b597;    /* приглушённый текст */
+  --gold: #c9a35a;       /* старое золото */
+  --gold-hi: #f4dca3;    /* блик фольги */
+  --gold-lo: #8a6a33;
+  --flame: #ffb760;
+  --line: rgba(201, 163, 90, .38);
+
+  --f-display: "Playfair Display", "Didot", "Bodoni 72", "Bodoni MT", "Times New Roman", Georgia, serif;
+  --f-text: "Tenor Sans", "Optima", "Candara", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", "Segoe Script", cursive;
+
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --foil: linear-gradient(100deg, #8a6a33 0%, #c9a35a 18%, #f6e3b0 30%, #d4b06a 40%, #9d7b3d 55%, #e7cb8a 70%, #fff1cc 78%, #b8914b 90%, #8a6a33 100%);
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { overflow-x: hidden; overflow-x: clip; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--ink);
+  background-image: linear-gradient(180deg, #160d1f 0%, #140c1d 30%, #121020 52%, #0f1a1b 78%, var(--forest) 100%);
+  color: var(--wax);
+  font-family: var(--f-text);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+body.locked { overflow: hidden; height: 100vh; height: 100svh; }
+::selection { background: rgba(201, 163, 90, .4); color: #fff; }
+
+a { color: var(--gold-hi); }
+:focus-visible { outline: 2px solid var(--gold-hi); outline-offset: 4px; border-radius: 2px; }
+
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; margin: 0; line-height: 1.1; }
+p { margin: 0; }
+
+.foil {
+  background: var(--foil);
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .foil { background: none; color: var(--gold); -webkit-text-fill-color: currentColor; }
+}
+
+.wrap {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding-left: var(--gutter-l);
+  padding-right: var(--gutter-r);
+}
+.section { position: relative; padding: 5.5rem 0; }
+
+/* Заголовки разделов: курсивная дидона и золотая нить до края колонки */
+.h-sec {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  font-style: italic;
+  font-size: clamp(2.1rem, 9vw, 3rem);
+  color: var(--wax);
+  margin-bottom: 2.25rem;
+}
+.h-sec::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  min-width: 2rem;
+  background: linear-gradient(90deg, var(--line), transparent);
+  transform: translateY(-.3em);
+}
+
+/* ---------- кнопки ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  min-height: 3.25rem;
+  padding: .85rem 1.9rem;
+  border-radius: 999px;
+  font-family: var(--f-text);
+  font-size: 1rem;
+  letter-spacing: .02em;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-position .6s ease, box-shadow .3s ease, color .3s ease, border-color .3s ease;
+}
+.btn--gold {
+  color: #24160a;
+  background: var(--foil);
+  background-size: 220% 100%;
+  background-position: 90% 0;
+  box-shadow: 0 0 0 1px rgba(255, 230, 170, .25) inset, 0 10px 30px -12px rgba(255, 183, 96, .45);
+}
+.btn--gold:hover { background-position: 10% 0; box-shadow: 0 0 0 1px rgba(255, 230, 170, .4) inset, 0 12px 36px -10px rgba(255, 183, 96, .6); }
+.btn--ghost { color: var(--gold-hi); background: transparent; border-color: var(--line); }
+.btn--ghost:hover { border-color: var(--gold); color: #fff3d6; }
+.textlink {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--wax-dim);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 5px;
+  background: none;
+  border: 0;
+  padding: .4rem 0;
+  cursor: pointer;
+}
+.textlink:hover { color: var(--gold-hi); text-decoration-color: var(--gold); }
+
+/* =========================================================
+   Вступление: свеча
+   ========================================================= */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: #0b0710;
+  cursor: pointer;
+  padding: 2rem var(--gutter-r) max(2rem, env(safe-area-inset-bottom, 0px)) var(--gutter-l);
+  transition: opacity .8s ease, visibility 0s linear .8s;
+}
+.intro__glow {
+  position: absolute;
+  left: 50%; top: 42%;
+  width: 60vmax; height: 60vmax;
+  margin: -30vmax 0 0 -30vmax;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 196, 120, .55), rgba(255, 160, 80, .18) 45%, rgba(120, 50, 70, .05) 75%, transparent);
+  transform: scale(.05);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 1.6s cubic-bezier(.2, .7, .2, 1), opacity .5s ease;
+}
+.intro__stage { position: relative; display: grid; justify-items: center; text-align: center; gap: 1.4rem; }
+.intro__candle { width: 92px; height: auto; overflow: visible; }
+.intro__candle .flame { transform-box: fill-box; transform-origin: 50% 100%; transform: scale(0); opacity: 0; transition: transform .6s cubic-bezier(.3, 1.6, .5, 1), opacity .3s ease; }
+.intro__candle .halo { opacity: 0; transition: opacity .8s ease .2s; }
+.intro__names { font-family: var(--f-display); font-style: italic; font-size: 1.6rem; color: var(--wax); }
+.intro__hint { color: var(--wax-dim); font-size: .95rem; max-width: 22rem; }
+.intro.is-lit .intro__glow { opacity: 1; transform: scale(3.2); }
+.intro.is-lit .flame { transform: scale(1); opacity: 1; }
+.intro.is-lit .halo { opacity: 1; }
+.intro.is-lit .intro__hint, .intro.is-lit #light { opacity: 0; transition: opacity .4s ease; }
+.intro.is-gone { opacity: 0; visibility: hidden; }
+
+.flicker { animation: flicker 3.2s infinite ease-in-out; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes flicker {
+  0%, 100% { transform: scale(1, 1) skewX(0deg); }
+  22% { transform: scale(.96, 1.05) skewX(1.5deg); }
+  41% { transform: scale(1.03, .97) skewX(-1deg); }
+  63% { transform: scale(.98, 1.04) skewX(2deg); }
+  80% { transform: scale(1.02, .98) skewX(-1.5deg); }
+}
+
+/* =========================================================
+   Первый экран
+   ========================================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero::before {
+  /* тёплое пятно свечи за именами */
+  content: "";
+  position: absolute;
+  left: 50%; top: 46%;
+  width: 150vmin; height: 150vmin;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(255, 183, 96, .2), rgba(190, 110, 80, .08) 50%, transparent 75%);
+  z-index: -1;
+  animation: glow 5s infinite ease-in-out;
+}
+@keyframes glow { 0%, 100% { opacity: .85; } 30% { opacity: 1; } 55% { opacity: .78; } 75% { opacity: .95; } }
+
+.garden { position: absolute; z-index: -1; pointer-events: none; }
+.garden svg { display: block; width: 100%; height: auto; overflow: visible; }
+.garden--a { left: -70px; bottom: -40px; width: 260px; transform: rotate(14deg); }
+.garden--b { right: -110px; top: -90px; width: 240px; transform: rotate(200deg); opacity: .85; }
+.garden--c { right: -40px; bottom: 6%; width: 150px; transform: rotate(-24deg); opacity: .8; }
+.dust { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.dust svg { width: 100%; height: 100%; }
+
+.hero__inner {
+  align-self: center;
+  padding-top: 4.5rem;
+  padding-bottom: 2rem;
+}
+.save {
+  font-family: var(--f-script);
+  font-size: clamp(2.2rem, 10vw, 3.4rem);
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 1.4rem;
+  padding: 0 .2em;
+}
+.names { font-style: italic; font-weight: 400; line-height: .95; letter-spacing: -.01em; }
+.names__g, .names__b { display: block; font-size: clamp(3.4rem, 17vw, 7.5rem); padding: .06em .08em .12em; }
+.names__g { text-align: left; }
+.names__b { text-align: right; }
+.names__and {
+  display: flex; align-items: center; gap: .9rem;
+  font-size: clamp(1.6rem, 7vw, 2.6rem);
+  color: var(--gold);
+  margin: .1em 0;
+}
+.names__and::before, .names__and::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--line), transparent); }
+.shine {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 4.8vw, 1.45rem);
+  color: var(--wax-dim);
+  text-align: center;
+  margin-top: 1.8rem;
+}
+.hero__date {
+  display: grid;
+  justify-items: center;
+  gap: .2rem;
+  margin-top: 2.2rem;
+  text-align: center;
+}
+.hero__date b {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 7vw, 2.2rem);
+  letter-spacing: .08em;
+  font-variant-numeric: lining-nums;
+  color: var(--wax);
+}
+.hero__date span { color: var(--wax-dim); font-size: .98rem; }
+.scroll {
+  justify-self: center;
+  display: grid; justify-items: center; gap: .5rem;
+  padding-bottom: max(1.6rem, env(safe-area-inset-bottom, 0px));
+  color: var(--wax-dim);
+  font-size: .9rem;
+  text-decoration: none;
+}
+.scroll i { display: block; width: 1px; height: 46px; background: linear-gradient(var(--gold), transparent); }
+
+/* Фольга проступает один раз, когда свеча зажжена */
+body.lit .hero .foil { animation: foil 2.6s cubic-bezier(.3, .6, .2, 1) forwards; }
+body.lit .names__b.foil { animation-delay: .25s; }
+@keyframes foil { from { background-position: 100% 0; } to { background-position: 0% 0; } }
+
+/* =========================================================
+   Приглашение
+   ========================================================= */
+.invite { text-align: center; padding-top: 4rem; }
+.invite__mark { width: 64px; height: auto; margin: 0 auto 2rem; display: block; }
+.invite p {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 6.4vw, 2.1rem);
+  line-height: 1.38;
+  color: var(--wax);
+  max-width: 30rem;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+/* ---------- Когда ---------- */
+.when__grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 1.25rem;
+}
+.when__day {
+  font-family: var(--f-display);
+  font-size: clamp(6rem, 32vw, 9.5rem);
+  line-height: .8;
+  font-variant-numeric: lining-nums;
+  padding: .04em .02em .08em;
+}
+.when__meta { border-left: 1px solid var(--line); padding-left: 1.25rem; display: grid; gap: .15rem; }
+.when__month { font-family: var(--f-display); font-style: italic; font-size: clamp(1.6rem, 7vw, 2.2rem); line-height: 1.1; }
+.when__sub { color: var(--wax-dim); }
+
+.count { margin-top: 3rem; }
+.count__lead { color: var(--wax-dim); margin-bottom: 1rem; }
+.count__nums { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; list-style: none; margin: 0; padding: 0; }
+.count__nums li { display: grid; justify-items: center; padding: .9rem .2rem .7rem; border-top: 1px solid var(--line); }
+.count__nums b { font-family: var(--f-display); font-weight: 400; font-size: clamp(2rem, 9vw, 2.8rem); line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+.count__nums span { font-size: .85rem; color: var(--wax-dim); margin-top: .4rem; }
+.count__done { margin-top: 3rem; padding: 1.8rem 0 0; border-top: 1px solid var(--line); }
+.count__done h3 { font-style: italic; font-size: clamp(1.55rem, 6.6vw, 2.4rem); text-wrap: balance; margin-bottom: .7rem; }
+.count__done p { color: var(--wax-dim); max-width: 30rem; }
+.when .btn { margin-top: 2rem; }
+
+/* ---------- Где ---------- */
+.where__venue { font-size: clamp(2.2rem, 10vw, 3.4rem); line-height: 1.05; padding-bottom: .1em; }
+.where__addr { margin-top: 1rem; font-size: 1.1rem; }
+.where__city { color: var(--wax-dim); }
+.where__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: 2rem; }
+
+/* ---------- Программа ---------- */
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 11px; top: .9rem; bottom: .9rem; width: 1px; background: linear-gradient(var(--gold), var(--line) 60%, transparent); }
+.timeline li { position: relative; display: grid; grid-template-columns: 5.6rem 1fr; align-items: baseline; gap: .8rem; padding: 1rem 0 1rem 2.6rem; }
+.timeline li svg { position: absolute; left: 3px; top: 1.05rem; width: 17px; height: 26px; }
+.timeline time { font-family: var(--f-display); font-size: 2rem; line-height: 1; font-variant-numeric: lining-nums; color: var(--gold-hi); }
+.timeline p { font-size: 1.1rem; }
+
+/* ---------- Дресс-код ---------- */
+.dress__lead { color: var(--wax-dim); max-width: 30rem; }
+.swatches { list-style: none; margin: 2.2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 1.4rem .4rem; }
+.swatches li { display: grid; justify-items: center; gap: .6rem; text-align: center; }
+.swatches i {
+  display: block; width: 50px; height: 50px; border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(244, 220, 163, .55), 0 0 0 5px rgba(18, 11, 25, 1), 0 0 0 6px rgba(201, 163, 90, .35), inset 0 -8px 16px rgba(0, 0, 0, .35), inset 0 6px 12px rgba(255, 255, 255, .08);
+}
+.swatches span { font-size: .85rem; color: var(--wax-dim); line-height: 1.3; }
+.dress__note {
+  margin-top: 2.4rem;
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.45;
+  padding-left: 1.1rem;
+  border-left: 1px solid var(--gold);
+}
+
+/* ---------- Анкета ---------- */
+.rsvp__panel {
+  position: relative;
+  background: linear-gradient(180deg, rgba(42, 24, 54, .92), rgba(26, 18, 36, .92));
+  border: 1px solid var(--line);
+  border-radius: 200px 200px 6px 6px;
+  padding: 4.2rem 1.4rem 2.2rem;
+  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .8), inset 0 1px 0 rgba(244, 220, 163, .08);
+}
+.rsvp__panel .h-sec { justify-content: center; text-align: center; margin-bottom: 1rem; }
+.rsvp__panel .h-sec::after { display: none; }
+.rsvp__note { text-align: center; color: var(--wax-dim); margin: 0 auto 2.2rem; max-width: 24rem; }
+.field { margin: 0 0 1.6rem; border: 0; padding: 0; min-width: 0; }
+.field > label, .field > legend { display: block; font-size: .95rem; color: var(--wax-dim); margin-bottom: .5rem; padding: 0; }
+.field input[type="text"], .field select, .field textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1.05rem;
+  color: var(--wax);
+  background: rgba(10, 6, 14, .45);
+  border: 1px solid rgba(201, 163, 90, .3);
+  border-radius: 10px;
+  padding: .85rem .95rem;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.field textarea { min-height: 6.5rem; resize: vertical; line-height: 1.5; }
+.field select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--gold) 50%), linear-gradient(135deg, var(--gold) 50%, transparent 50%); background-position: calc(100% - 20px) 55%, calc(100% - 14px) 55%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 2.6rem; }
+.field select option { background: #1f1428; color: var(--wax); }
+.field input::placeholder, .field textarea::placeholder { color: rgba(196, 181, 151, .55); }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold-hi); background-color: rgba(10, 6, 14, .7); outline: none; box-shadow: 0 0 0 3px rgba(244, 220, 163, .18); }
+.field [aria-invalid="true"] { border-color: #e3897a; }
+.choices { display: grid; gap: .6rem; }
+.choice { position: relative; display: block; cursor: pointer; }
+.choice input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.choice span {
+  display: flex; align-items: center; gap: .8rem;
+  padding: .85rem 1rem;
+  border: 1px solid rgba(201, 163, 90, .3);
+  border-radius: 10px;
+  color: var(--wax);
+  transition: border-color .2s ease, background-color .2s ease;
+}
+.choice span::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--gold); box-shadow: inset 0 0 0 4px #1d1226; transition: background-color .2s ease; }
+.choice input:checked + span { border-color: var(--gold); background: rgba(201, 163, 90, .1); }
+.choice input:checked + span::before { background: var(--gold-hi); }
+.choice input:focus-visible + span { outline: 2px solid var(--gold-hi); outline-offset: 3px; }
+.form-error { color: #f0a497; min-height: 1.4em; margin: -.4rem 0 1rem; font-size: .95rem; }
+.rsvp__panel .btn--gold { width: 100%; }
+.thanks { text-align: center; display: grid; justify-items: center; gap: 1.2rem; padding-top: .4rem; }
+.thanks h3 { font-style: italic; font-size: 2.4rem; }
+.thanks p { color: var(--wax-dim); max-width: 24rem; }
+
+/* ---------- Финал ---------- */
+.finale { text-align: center; padding: 6rem 0 4rem; overflow: hidden; position: relative; isolation: isolate; }
+.finale::before { content: ""; position: absolute; left: 50%; top: 40%; width: 120vmin; height: 120vmin; transform: translate(-50%, -50%); background: radial-gradient(closest-side, rgba(255, 183, 96, .14), transparent 70%); z-index: -1; }
+.finale__candle { width: 54px; height: auto; margin: 0 auto 1.8rem; display: block; overflow: visible; }
+.finale h2 { font-style: italic; font-size: clamp(3.6rem, 18vw, 6.5rem); line-height: 1; padding: .05em .1em .15em; }
+.finale__sign { margin-top: 1.6rem; color: var(--wax-dim); }
+.finale__sign b { display: block; font-family: var(--f-display); font-style: italic; font-weight: 400; font-size: 1.6rem; color: var(--wax); margin-top: .3rem; }
+.foot { text-align: center; color: rgba(196, 181, 151, .6); font-size: .85rem; padding: 2rem 0 max(2rem, env(safe-area-inset-bottom, 0px)); }
+
+/* ---------- шире телефона ---------- */
+@media (min-width: 720px) {
+  .section { padding: 7.5rem 0; }
+  .garden--a { width: 420px; left: -90px; }
+  .garden--b { width: 400px; right: -90px; }
+  .garden--c { width: 240px; right: 4%; }
+  .hero__inner { max-width: 46rem; }
+  .rsvp__panel { padding: 5rem 3.2rem 3rem; }
+  .choices { grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .foil { background-position: 30% 0 !important; }
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- Вступление: тёмный экран и незажжённая свеча -->
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="intro-names">
+  <div class="intro__glow" aria-hidden="true"></div>
+  <div class="intro__stage">
+    <svg class="intro__candle" viewBox="0 0 120 250" aria-hidden="true" data-ornament="candle"></svg>
+    <p class="intro__names" id="intro-names" data-bind="names-plain">Александр и Вера</p>
+    <button class="btn btn--gold" id="light" type="button">Зажечь свечу</button>
+    <p class="intro__hint">Приглашение откроется, когда загорится свеча</p>
+  </div>
+</div>
+
+<main id="main">
+  <header class="hero" id="top">
+    <div class="garden garden--a" data-ornament="garden-plum" aria-hidden="true"></div>
+    <div class="garden garden--b" data-ornament="garden-forest" aria-hidden="true"></div>
+    <div class="garden garden--c" data-ornament="garden-gold" aria-hidden="true"></div>
+    <div class="dust" data-ornament="dust" aria-hidden="true"></div>
+
+    <div class="hero__inner wrap">
+      <p class="save foil" lang="en">Save the date</p>
+      <h1 class="names">
+        <span class="names__g foil" data-bind="groom">Александр</span>
+        <span class="names__and">и</span>
+        <span class="names__b foil" data-bind="bride">Вера</span>
+      </h1>
+      <p class="shine">«Ты заставляешь меня сиять»</p>
+      <p class="hero__date"><b data-bind="date-dots">07.10.2026</b><span data-bind="date-sub">среда, начало в 16:00</span></p>
+    </div>
+    <a class="scroll" href="#invite"><span>Листайте вниз</span><i aria-hidden="true"></i></a>
+  </header>
+
+  <section class="section invite" id="invite">
+    <div class="wrap">
+      <svg class="invite__mark" viewBox="0 0 64 40" aria-hidden="true" data-ornament="sprig"></svg>
+      <p>Приглашаем вас разделить с нами радость и счастье нашего свадебного дня</p>
+    </div>
+  </section>
+
+  <section class="section when" id="when" aria-labelledby="when-h">
+    <div class="wrap">
+      <h2 class="h-sec" id="when-h">Когда</h2>
+      <div class="when__grid">
+        <p class="when__day foil" data-bind="day">7</p>
+        <div class="when__meta">
+          <p class="when__month" data-bind="month-year">октября 2026</p>
+          <p class="when__sub" data-bind="weekday-time">среда, 16:00</p>
+        </div>
+      </div>
+
+      <div class="count" id="count">
+        <p class="count__lead">До начала торжества осталось</p>
+        <ul class="count__nums" aria-live="off">
+          <li><b data-u="d">0</b><span data-l="d">дней</span></li>
+          <li><b data-u="h">00</b><span data-l="h">часов</span></li>
+          <li><b data-u="m">00</b><span data-l="m">минут</span></li>
+          <li><b data-u="s">00</b><span data-l="s">секунд</span></li>
+        </ul>
+      </div>
+      <div class="count__done" id="count-done" hidden>
+        <h3 class="foil" id="done-title">Спасибо, что были с нами</h3>
+        <p id="done-text">Этот вечер останется с нами навсегда. Спасибо за ваши улыбки, тёплые слова и танцы до последней песни.</p>
+      </div>
+      <a class="btn btn--ghost" id="cal-link" href="#" target="_blank" rel="noopener">Добавить в календарь</a>
+    </div>
+  </section>
+
+  <section class="section where" id="where" aria-labelledby="where-h">
+    <div class="wrap">
+      <h2 class="h-sec" id="where-h">Где</h2>
+      <p class="where__venue foil" data-bind="venue">Ресторан «Frunze»</p>
+      <p class="where__addr" data-bind="address">улица Абдумомунова, 220А</p>
+      <p class="where__city" data-bind="city">Бишкек</p>
+      <div class="where__actions">
+        <a class="btn btn--gold" id="map-link" href="#" target="_blank" rel="noopener">Как добраться</a>
+        <a class="textlink" id="gmap-link" href="#" target="_blank" rel="noopener">Открыть в Google Картах</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section timing" id="timing" aria-labelledby="timing-h">
+    <div class="wrap">
+      <h2 class="h-sec" id="timing-h">Программа вечера</h2>
+      <ol class="timeline" id="timeline"></ol>
+    </div>
+  </section>
+
+  <section class="section dress" id="dress" aria-labelledby="dress-h">
+    <div class="wrap">
+      <h2 class="h-sec" id="dress-h">Дресс-код</h2>
+      <p class="dress__lead">Вечер пройдёт в глубоких ночных тонах. Будем рады, если вы поддержите палитру праздника.</p>
+      <ul class="swatches" id="swatches" aria-label="Цвета дресс-кода"></ul>
+      <p class="dress__note">Просим не выбирать белый цвет — он для невесты.</p>
+    </div>
+  </section>
+
+  <section class="section rsvp" id="rsvp" aria-labelledby="rsvp-h">
+    <div class="wrap">
+      <div class="rsvp__panel">
+        <h2 class="h-sec" id="rsvp-h">Анкета гостя</h2>
+        <p class="rsvp__note" data-bind="rsvp-note"></p>
+
+        <form id="rsvp-form" novalidate>
+          <div class="field">
+            <label for="guest-name">Ваше имя и фамилия</label>
+            <input type="text" id="guest-name" name="name" autocomplete="name" placeholder="Например, Айгерим Садыкова">
+          </div>
+          <fieldset class="field">
+            <legend>Сможете ли вы прийти?</legend>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="attend" value="yes"><span>Да, с радостью приду</span></label>
+              <label class="choice"><input type="radio" name="attend" value="no"><span>К сожалению, не смогу</span></label>
+            </div>
+          </fieldset>
+          <div class="field" id="guests-field">
+            <label for="guest-count">Сколько вас будет</label>
+            <select id="guest-count" name="count">
+              <option value="1">Только я</option>
+              <option value="2">Нас двое</option>
+              <option value="3">3 человека</option>
+              <option value="4">4 человека</option>
+              <option value="5">5 человек</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="guest-note">Пожелания или вопросы</label>
+            <textarea id="guest-note" name="note" placeholder="Например, не пью алкоголь"></textarea>
+          </div>
+          <p class="form-error" id="form-error" role="alert"></p>
+          <button class="btn btn--gold" type="submit">Отправить ответ</button>
+        </form>
+
+        <div class="thanks" id="thanks" hidden>
+          <h3 class="foil">Спасибо!</h3>
+          <p id="thanks-text">Мы получили ваш ответ.</p>
+          <a class="btn btn--gold" id="wa-link" href="#" target="_blank" rel="noopener" hidden>Отправить в WhatsApp</a>
+          <button class="textlink" id="edit-answer" type="button">Изменить ответ</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="finale" aria-labelledby="finale-h">
+    <div class="wrap">
+      <svg class="finale__candle" viewBox="0 0 120 250" aria-hidden="true" data-ornament="candle-lit"></svg>
+      <h2 class="foil" id="finale-h">Ждём вас!</h2>
+      <p class="finale__sign">С любовью,<b data-bind="names-plain">Александр и Вера</b></p>
+    </div>
+  </section>
+  <footer class="foot" data-bind="footer">07.10.2026, Бишкек</footer>
+</main>
+
+<script>
+/* ==========================================================
+   НАСТРОЙКИ — все данные праздника меняются только здесь
+   ========================================================== */
+const CONFIG = {
+  // имена
+  groom: "Александр",
+  bride: "Вера",
+  // начало и окончание (часовой пояс Бишкека +06:00)
+  date: "2026-10-07T16:00:00+06:00",
+  endDate: "2026-10-07T23:00:00+06:00",
+  // место
+  venue: "Ресторан «Frunze»",
+  address: "улица Абдумомунова, 220А",
+  city: "Бишкек",
+  // кнопка «Как добраться» (2ГИС) и запасная ссылка на Google Карты
+  map2gis: "https://2gis.kg/bishkek/search/Frunze%20%D0%90%D0%B1%D0%B4%D1%83%D0%BC%D0%BE%D0%BC%D1%83%D0%BD%D0%BE%D0%B2%D0%B0%20220%D0%90",
+  mapGoogle: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Ресторан Frunze, Абдумомунова 220А, Бишкек"),
+  // программа вечера
+  timing: [
+    { time: "16:00", title: "Сбор гостей" },
+    { time: "17:00", title: "Начало торжества" },
+    { time: "23:00", title: "Завершение вечера" }
+  ],
+  // палитра дресс-кода: цвет и подпись (можно указать просто строку "#hex")
+  dressColors: [
+    { hex: "#3b1d45", name: "Слива" },
+    { hex: "#1d3a31", name: "Хвоя" },
+    { hex: "#5e1a2c", name: "Бордо" },
+    { hex: "#1c2744", name: "Полночь" },
+    { hex: "#a9843f", name: "Старое золото" }
+  ],
+  // подпись к анкете
+  rsvpNote: "Пожалуйста, подтвердите своё присутствие до 1 сентября",
+  // номер WhatsApp для ответов гостей, только цифры, например "996700123456"
+  // если оставить пустым, кнопка WhatsApp не появится
+  whatsapp: ""
+};
+</script>
+
+<script>
+(function () {
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const pad = (n) => String(n).padStart(2, "0");
+  const plural = (n, forms) => {
+    const a = Math.abs(n) % 100, b = a % 10;
+    if (a > 10 && a < 20) return forms[2];
+    if (b > 1 && b < 5) return forms[1];
+    if (b === 1) return forms[0];
+    return forms[2];
+  };
+
+  /* ---------- даты (показываем время площадки) ---------- */
+  const start = new Date(CONFIG.date);
+  const end = new Date(CONFIG.endDate || CONFIG.date);
+  const tz = /([+-])(\d\d):?(\d\d)$/.exec(CONFIG.date);
+  const offsetMs = tz ? (tz[1] === "-" ? -1 : 1) * (Number(tz[2]) * 60 + Number(tz[3])) * 60e3 : 0;
+  const local = new Date(start.getTime() + offsetMs);
+  const weekdays = ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"];
+  const months = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  const D = local.getUTCDate(), M = local.getUTCMonth(), Y = local.getUTCFullYear();
+  const time = pad(local.getUTCHours()) + ":" + pad(local.getUTCMinutes());
+  const wd = weekdays[local.getUTCDay()];
+  const namesPlain = `${CONFIG.groom} и ${CONFIG.bride}`;
+  const dots = `${pad(D)}.${pad(M + 1)}.${Y}`;
+
+  const binds = {
+    "groom": CONFIG.groom,
+    "bride": CONFIG.bride,
+    "names-plain": namesPlain,
+    "date-dots": dots,
+    "date-sub": `${wd}, начало в ${time}`,
+    "day": String(D),
+    "month-year": `${months[M]} ${Y}`,
+    "weekday-time": `${wd}, ${time}`,
+    "venue": CONFIG.venue,
+    "address": CONFIG.address,
+    "city": CONFIG.city,
+    "rsvp-note": CONFIG.rsvpNote,
+    "footer": `${dots}, ${CONFIG.city}`
+  };
+  $$("[data-bind]").forEach((el) => { const k = el.dataset.bind; if (k in binds) el.textContent = binds[k]; });
+  $(".hero__date b").setAttribute("aria-label", `${D} ${months[M]} ${Y}`);
+  document.title = namesPlain;
+
+  $("#map-link").href = CONFIG.map2gis || CONFIG.mapGoogle;
+  $("#gmap-link").href = CONFIG.mapGoogle;
+  if (!CONFIG.map2gis) $("#gmap-link").hidden = true;
+
+  const gcal = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  $("#cal-link").href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+    "&text=" + encodeURIComponent(`Свадьба: ${namesPlain}`) +
+    "&dates=" + gcal(start) + "/" + gcal(end) +
+    "&details=" + encodeURIComponent(`Сбор гостей в ${time}`) +
+    "&location=" + encodeURIComponent(`${CONFIG.venue}, ${CONFIG.address}, ${CONFIG.city}`);
+
+  /* ---------- орнаменты ---------- */
+  const candle = (lit, id) => `
+    <defs>
+      <linearGradient id="wax${id}" x1="0" x2="1">
+        <stop offset="0" stop-color="#b9a07a"/><stop offset=".35" stop-color="#f4e8cf"/><stop offset=".7" stop-color="#e2cfa9"/><stop offset="1" stop-color="#8f7754"/>
+      </linearGradient>
+      <radialGradient id="fl${id}" cx=".5" cy=".7" r=".6">
+        <stop offset="0" stop-color="#fffbe8"/><stop offset=".35" stop-color="#ffe29a"/><stop offset=".75" stop-color="#ffa54a"/><stop offset="1" stop-color="#e0602a" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="ha${id}" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#ffcf86" stop-opacity=".55"/><stop offset="1" stop-color="#ff9a4a" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle class="halo" cx="60" cy="72" r="58" fill="url(#ha${id})" ${lit ? 'style="opacity:1"' : ""}/>
+    <path d="M38 118 C 38 110 82 110 82 118 L 82 244 C 82 248 38 248 38 244 Z" fill="url(#wax${id})"/>
+    <path d="M38 118 C 44 112 76 112 82 118 C 80 124 74 122 72 132 C 70 140 66 140 65 128 C 64 121 52 124 48 122 C 44 136 40 134 38 124 Z" fill="#f8efdb" opacity=".9"/>
+    <ellipse cx="60" cy="117" rx="22" ry="3.5" fill="#d9c49b" opacity=".6"/>
+    <path d="M60 116 C 60 108 61 104 60 98" stroke="#2a1d14" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <g class="flame" ${lit ? 'style="transform:none;opacity:1"' : ""}>
+      <g class="flicker">
+        <path d="M60 40 C 70 58 76 72 74 84 C 72 96 66 101 60 101 C 54 101 48 96 46 84 C 44 72 50 58 60 40 Z" fill="url(#fl${id})"/>
+        <path d="M60 70 C 64 79 66 86 64 92 C 63 96 61 98 60 98 C 59 98 57 96 56 92 C 54 86 56 79 60 70 Z" fill="#ffffff" opacity=".85"/>
+        <ellipse cx="60" cy="97" rx="3.5" ry="4" fill="#5a7bd6" opacity=".55"/>
+      </g>
+    </g>`;
+
+  // ветка ночного сада: стебель и листья вдоль него
+  const garden = (fill, stroke, opacity) => {
+    let leaves = "";
+    const n = 11;
+    for (let i = 0; i < n; i++) {
+      const t = i / (n - 1);
+      const y = 390 - t * 360;
+      const x = 100 + Math.sin(t * 3.1) * 16;
+      const side = i % 2 ? 1 : -1;
+      const s = 1.35 - t * .7;
+      leaves += `<path d="M0 0 C 14 -13 40 -14 58 0 C 40 14 14 13 0 0 Z" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${-90 + side * (58 - t * 18)}) scale(${s.toFixed(2)})" fill="${fill}" stroke="${stroke}" stroke-width="${stroke === "none" ? 0 : .8}"/>`;
+      if (stroke !== "none") leaves += `<path d="M2 0 L 54 0" transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${-90 + side * (58 - t * 18)}) scale(${s.toFixed(2)})" stroke="${stroke}" stroke-width=".5" opacity=".6"/>`;
+    }
+    return `<svg viewBox="0 0 200 400" style="opacity:${opacity}"><path d="M100 400 C 96 300 118 200 104 30" stroke="${stroke === "none" ? fill : stroke}" stroke-width="2.2" fill="none" stroke-linecap="round"/>${leaves}</svg>`;
+  };
+
+  // золотая пыль: детерминированный набор точек
+  const dust = () => {
+    let seed = 7, out = "";
+    const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+    for (let i = 0; i < 26; i++) {
+      const r = (rnd() * 1.4 + .4).toFixed(2);
+      out += `<circle cx="${(rnd() * 100).toFixed(1)}%" cy="${(rnd() * 100).toFixed(1)}%" r="${r}" fill="#f4dca3" opacity="${(rnd() * .5 + .15).toFixed(2)}"/>`;
+    }
+    return `<svg aria-hidden="true">${out}</svg>`;
+  };
+
+  const sprig = `<g fill="none" stroke="#c9a35a" stroke-width="1" stroke-linecap="round">
+      <path d="M2 30 C 20 30 44 30 62 30"/>
+      <path d="M32 30 C 32 22 33 14 32 4"/>
+      <path d="M32 18 C 26 14 22 14 18 16 C 22 20 27 20 32 18 Z M32 18 C 38 14 42 14 46 16 C 42 20 37 20 32 18 Z M32 10 C 28 6 25 6 22 7 C 25 11 29 11 32 10 Z M32 10 C 36 6 39 6 42 7 C 39 11 35 11 32 10 Z"/>
+    </g><circle cx="32" cy="30" r="2" fill="#f4dca3"/>`;
+
+  let uid = 0;
+  $$("[data-ornament]").forEach((el) => {
+    const k = el.dataset.ornament; uid++;
+    if (k === "candle") el.innerHTML = candle(false, uid);
+    else if (k === "candle-lit") el.innerHTML = candle(true, uid);
+    else if (k === "garden-plum") el.innerHTML = garden("#26162f", "none", 1);
+    else if (k === "garden-forest") el.innerHTML = garden("#163029", "none", 1);
+    else if (k === "garden-gold") el.innerHTML = garden("none", "#c9a35a", .55);
+    else if (k === "dust") el.innerHTML = dust();
+    else if (k === "sprig") el.innerHTML = sprig;
+  });
+
+  /* ---------- программа и дресс-код ---------- */
+  const flameMark = `<svg viewBox="0 0 17 26" aria-hidden="true"><path d="M8.5 1 C 13 8 15.5 13 15 17.5 C 14.5 22 11.8 25 8.5 25 C 5.2 25 2.5 22 2 17.5 C 1.5 13 4 8 8.5 1 Z" fill="#ffb760" opacity=".25"/><path d="M8.5 7 C 11 11 12.2 14 12 17 C 11.8 20 10.3 22 8.5 22 C 6.7 22 5.2 20 5 17 C 4.8 14 6 11 8.5 7 Z" fill="#f4dca3"/></svg>`;
+  const tl = $("#timeline");
+  CONFIG.timing.forEach((t) => {
+    const li = document.createElement("li");
+    li.innerHTML = flameMark;
+    const tm = document.createElement("time"); tm.textContent = t.time;
+    const p = document.createElement("p"); p.textContent = t.title;
+    li.append(tm, p); tl.append(li);
+  });
+  const sw = $("#swatches");
+  CONFIG.dressColors.forEach((c) => {
+    const hex = typeof c === "string" ? c : c.hex;
+    const name = typeof c === "string" ? "" : (c.name || "");
+    const li = document.createElement("li");
+    const dot = document.createElement("i"); dot.style.background = hex;
+    li.append(dot);
+    if (name) { const s = document.createElement("span"); s.textContent = name; li.append(s); }
+    else li.setAttribute("aria-label", hex);
+    sw.append(li);
+  });
+
+  /* ---------- вступление: зажечь свечу ---------- */
+  const intro = $("#intro"), main = $("#main"), lightBtn = $("#light");
+  let opened = false;
+  main.inert = true;
+  function finish() {
+    intro.hidden = true;
+    document.body.classList.remove("locked");
+    main.inert = false;
+  }
+  function openInvite(instant) {
+    if (opened) return; opened = true;
+    if (instant || reduce) {
+      intro.classList.add("is-lit", "is-gone");
+      document.body.classList.add("lit");
+      finish();
+      return;
+    }
+    intro.classList.add("is-lit");
+    setTimeout(() => { intro.classList.add("is-gone"); document.body.classList.add("lit"); }, 1350);
+    setTimeout(finish, 2150);
+  }
+  intro.addEventListener("click", () => openInvite(false));
+  document.addEventListener("keydown", (e) => {
+    if (!opened && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openInvite(false); }
+  });
+  if (location.hash && location.hash.length > 1) openInvite(true);
+  else { try { lightBtn.focus({ preventScroll: true }); } catch (x) {} }
+
+  /* ---------- обратный отсчёт ---------- */
+  const U = {}, L = {};
+  ["d", "h", "m", "s"].forEach((k) => { U[k] = $(`[data-u="${k}"]`); L[k] = $(`[data-l="${k}"]`); });
+  const F = { d: ["день", "дня", "дней"], h: ["час", "часа", "часов"], m: ["минута", "минуты", "минут"], s: ["секунда", "секунды", "секунд"] };
+  function tick() {
+    const now = Date.now();
+    let diff = Math.floor((start - now) / 1000);
+    if (diff <= 0) {
+      $("#count").hidden = true;
+      $("#count-done").hidden = false;
+      $("#cal-link").hidden = true;
+      if (now < end) {
+        $("#done-title").textContent = "Праздник уже идёт";
+        $("#done-text").textContent = `Мы уже в зале. Ждём вас: ${CONFIG.venue}, ${CONFIG.address}.`;
+      } else {
+        $("#done-title").textContent = "Спасибо, что были с нами";
+      }
+      return now < end;
+    }
+    const v = { d: Math.floor(diff / 86400) };
+    diff -= v.d * 86400; v.h = Math.floor(diff / 3600);
+    diff -= v.h * 3600; v.m = Math.floor(diff / 60); v.s = diff - v.m * 60;
+    Object.keys(v).forEach((k) => { U[k].textContent = k === "d" ? v[k] : pad(v[k]); L[k].textContent = plural(v[k], F[k]); });
+    return true;
+  }
+  if (tick()) { const iv = setInterval(() => { if (!tick()) clearInterval(iv); }, 1000); }
+
+  /* ---------- анкета гостя ---------- */
+  const form = $("#rsvp-form"), thanks = $("#thanks"), err = $("#form-error");
+  const fName = form.elements["name"], fCount = form.elements["count"], fNote = form.elements["note"];
+  const guestsField = $("#guests-field");
+  const attendVal = () => { const r = form.querySelector('input[name="attend"]:checked'); return r ? r.value : ""; };
+  form.addEventListener("change", () => { guestsField.hidden = attendVal() === "no"; });
+  fName.addEventListener("input", () => { if (fName.value.trim()) fName.removeAttribute("aria-invalid"); });
+
+  const KEY = "rsvp-night-" + CONFIG.groom + "-" + CONFIG.bride;
+  function showThanks(a) {
+    form.hidden = true; thanks.hidden = false;
+    const txt = $("#thanks-text");
+    txt.textContent = a.attend === "yes"
+      ? `${a.name}, мы очень ждём вас!`
+      : `${a.name}, жаль, что не получится. Спасибо, что сообщили.`;
+    const wa = $("#wa-link");
+    const digits = String(CONFIG.whatsapp || "").replace(/\D/g, "");
+    if (digits) {
+      const lines = [
+        `Ответ на приглашение (${namesPlain})`,
+        `Имя: ${a.name}`,
+        `Приду: ${a.attend === "yes" ? "да" : "нет"}`
+      ];
+      if (a.attend === "yes") lines.push(`Количество гостей: ${a.count}`);
+      if (a.note) lines.push(`Пожелания: ${a.note}`);
+      wa.href = "https://wa.me/" + digits + "?text=" + encodeURIComponent(lines.join("\n"));
+      wa.hidden = false;
+      txt.textContent += " Нажмите кнопку ниже, чтобы отправить ответ нам в WhatsApp.";
+    } else wa.hidden = true;
+  }
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const a = { name: fName.value.trim(), attend: attendVal(), count: fCount.value, note: fNote.value.trim() };
+    if (!a.name) {
+      err.textContent = "Напишите, пожалуйста, ваше имя.";
+      fName.setAttribute("aria-invalid", "true"); fName.focus(); return;
+    }
+    if (!a.attend) {
+      err.textContent = "Отметьте, сможете ли вы прийти.";
+      form.querySelector('input[name="attend"]').focus(); return;
+    }
+    err.textContent = "";
+    try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (x) { /* хранилище недоступно */ }
+    showThanks(a);
+    $("#rsvp").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  });
+  $("#edit-answer").addEventListener("click", () => { thanks.hidden = true; form.hidden = false; fName.focus(); });
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (saved && saved.name) {
+      fName.value = saved.name;
+      const r = form.querySelector(`input[name="attend"][value="${saved.attend === "no" ? "no" : "yes"}"]`); if (r) r.checked = true;
+      fCount.value = saved.count || "1"; fNote.value = saved.note || "";
+      guestsField.hidden = saved.attend === "no";
+      showThanks(saved);
+    }
+  } catch (x) { /* нет сохранённого ответа */ }
+})();
+</script>
+</body>
+</html>
