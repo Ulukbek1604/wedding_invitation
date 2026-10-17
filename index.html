@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Александр и Вера</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Приглашение на свадьбу Александра и Веры — 7 октября 2026, ресторан «Frunze».">
+<meta property="og:title" content="Александр и Вера — приглашение на свадьбу">
+<meta property="og:description" content="7 октября 2026 · ресторан «Frunze», ул. Абдумомунова, 220А">
+<meta name="theme-color" content="#e9dcc8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Forum&family=Great+Vibes&display=swap">
+<style>
+/* Layout: one narrow "veil" column of frosted ivory floating over a painted satin backdrop; flowers and butterflies break its edges. */
+:root {
+  color-scheme: light;
+  --satin-deep: #8c7660;
+  --satin: #d9c6aa;
+  --ivory: #fbf7f0;
+  --veil: rgba(252, 248, 241, .62);
+  --ink: #3b3029;
+  --ink-soft: #6e5f53;
+  --gold: #b08d57;
+  --gold-light: #e8d3a6;
+  --line: rgba(110, 90, 70, .28);
+
+  --f-script: "Great Vibes", "Segoe Script", cursive;
+  --f-caps: "Forum", "Cormorant Garamond", Georgia, serif;
+  --f-body: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body {
+  margin: 0;
+  background: var(--satin);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 19px;
+  line-height: 1.55;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+body.locked { overflow: hidden; }
+
+/* ---------- satin backdrop ---------- */
+#satin {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  z-index: -2;
+  display: block;
+  background: linear-gradient(160deg, #efe3d1, #c9b393 55%, #9b8469);
+}
+.glow {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(60% 45% at 50% 0%, rgba(255, 250, 240, .75), transparent 70%),
+    radial-gradient(40% 30% at 85% 90%, rgba(255, 245, 225, .35), transparent 70%);
+}
+
+/* ---------- envelope intro ---------- */
+.intro {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; place-items: center;
+  padding-block: 24px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background:
+    radial-gradient(60% 45% at 50% 0%, rgba(255, 251, 244, .9), transparent 70%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0) 0 34px, rgba(255, 252, 245, .35) 46px, rgba(120, 95, 70, .12) 70px, rgba(255, 255, 255, 0) 84px),
+    linear-gradient(180deg, #efe4d3, #d8c4a6 60%, #b49c7e);
+  transition: opacity 1s ease .9s, visibility 0s linear 1.9s;
+  cursor: pointer;
+}
+.intro.open { opacity: 0; visibility: hidden; }
+.intro__inner { display: grid; justify-items: center; gap: 28px; text-align: center; }
+.intro__lead {
+  font-family: var(--f-caps); font-size: clamp(15px, 3.6vw, 18px);
+  letter-spacing: .22em; text-transform: uppercase; color: var(--ink);
+  margin: 0;
+}
+.intro__lead em { display: block; font-family: var(--f-script); font-style: normal; text-transform: none; letter-spacing: 0; font-size: 2.6em; line-height: 1.1; margin-top: 4px; color: var(--ink); }
+.intro__hint { font-family: var(--f-caps); font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: var(--ink-soft); animation: breathe 2.4s ease-in-out infinite; margin: 0; }
+
+.env {
+  position: relative;
+  width: min(84vw, 420px);
+  aspect-ratio: 1.48;
+  max-width: 100%;
+  perspective: 1200px;
+  filter: drop-shadow(0 24px 30px rgba(70, 50, 30, .28));
+}
+.env__back, .env__front, .env__flap, .env__card { position: absolute; inset: 0; }
+.env__back { background: linear-gradient(180deg, #e9dcc7, #e2d2ba); border-radius: 4px; }
+.env__card {
+  inset: 8% 7% 6%;
+  background: var(--ivory);
+  border-radius: 2px;
+  display: grid; place-items: center;
+  font-family: var(--f-script); font-size: clamp(26px, 6vw, 36px); color: var(--ink);
+  transition: transform 1.1s cubic-bezier(.3, .7, .2, 1) .55s;
+  box-shadow: 0 2px 6px rgba(80, 60, 40, .12);
+}
+.env__front {
+  background:
+    linear-gradient(to top right, transparent calc(50% - .5px), rgba(150, 120, 85, .18) 50%, transparent calc(50% + .5px)) left bottom / 50% 54% no-repeat,
+    linear-gradient(to top left, transparent calc(50% - .5px), rgba(150, 120, 85, .18) 50%, transparent calc(50% + .5px)) right bottom / 50% 54% no-repeat,
+    linear-gradient(180deg, #f3eadb, #e7d8c1);
+  clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 4px;
+}
+.env__flap {
+  transform-origin: top center;
+  background: linear-gradient(180deg, #e6d6be, #f1e7d7);
+  clip-path: polygon(0 0, 100% 0, 50% 58%);
+  transition: transform .9s cubic-bezier(.5, 0, .3, 1), z-index 0s .45s;
+  z-index: 3;
+}
+.seal {
+  position: absolute; left: 50%; top: 58%;
+  width: 22%; aspect-ratio: 1; max-width: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 0; padding: 0; cursor: pointer;
+  background:
+    radial-gradient(circle at 35% 30%, #f6e2b3 0%, #d4ae6c 30%, #a57c3e 70%, #7f5b28 100%);
+  box-shadow: inset 0 0 0 5px rgba(255, 240, 200, .25), inset 0 -4px 8px rgba(80, 50, 10, .35), 0 3px 8px rgba(70, 45, 15, .35);
+  display: grid; place-items: center;
+  font-family: var(--f-script); color: #6d4b1d; font-size: clamp(22px, 5.4vw, 32px);
+  text-shadow: 0 1px 0 rgba(255, 238, 200, .7), 0 -1px 0 rgba(80, 50, 15, .4);
+  z-index: 4;
+  transition: transform .5s ease, opacity .5s ease;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.seal:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
+.intro.open .seal { opacity: 0; transform: translate(-50%, -50%) scale(.6); animation: none; }
+.intro.open .env__flap { transform: rotateX(180deg); z-index: 0; }
+.intro.open .env__card { transform: translateY(-46%); }
+
+/* ---------- page column ---------- */
+.page {
+  position: relative;
+  width: min(100%, 560px);
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.veil {
+  position: relative;
+  background: var(--veil);
+  -webkit-backdrop-filter: blur(6px) saturate(1.05);
+  backdrop-filter: blur(6px) saturate(1.05);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .5) inset, 0 30px 60px rgba(90, 65, 40, .18);
+}
+section {
+  position: relative;
+  padding-block: 88px;
+  padding-inline: clamp(20px, 7vw, 48px);
+  text-align: center;
+  display: grid; justify-items: center; gap: 22px;
+}
+.caps {
+  font-family: var(--f-caps);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: clamp(15px, 3.8vw, 18px);
+  line-height: 1.5;
+  margin: 0;
+  text-wrap: balance;
+}
+.script {
+  font-family: var(--f-script);
+  font-weight: 400;
+  font-size: clamp(54px, 15vw, 82px);
+  line-height: 1;
+  margin: 0;
+  color: var(--ink);
+}
+.rule { width: 1px; height: 96px; background: var(--ink); opacity: .7; margin: 6px 0; }
+.small { font-size: 17px; color: var(--ink-soft); margin: 0; max-width: 34ch; text-wrap: pretty; }
+
+/* hero */
+.hero { padding-top: 120px; padding-bottom: 110px; min-height: 0; }
+.hero__whisper {
+  position: absolute; top: 26px; right: clamp(8px, 5vw, 30px);
+  font-family: var(--f-script); font-size: clamp(22px, 5.6vw, 30px);
+  line-height: 1.05; text-align: right; color: var(--ink-soft);
+  transform: rotate(-6deg); margin: 0;
+}
+.hero .script { font-size: clamp(60px, 17vw, 96px); }
+.names {
+  font-family: var(--f-caps); text-transform: uppercase;
+  font-size: clamp(24px, 7vw, 36px); letter-spacing: .08em; line-height: 1.2;
+  margin: 0; text-wrap: balance;
+}
+.names span { font-family: var(--f-script); text-transform: none; font-size: 1.3em; letter-spacing: 0; padding-inline: .15em; color: var(--gold); }
+.scroll-cue { display: grid; justify-items: center; gap: 10px; margin-top: 30px; color: var(--ink-soft); text-decoration: none; }
+.scroll-cue svg { animation: drift 2.6s ease-in-out infinite; }
+
+/* date */
+.date {
+  display: grid; justify-items: center; gap: 4px;
+  font-family: var(--f-body); font-weight: 300;
+  font-size: clamp(70px, 20vw, 104px); line-height: 1;
+  font-variant-numeric: oldstyle-nums;
+  color: var(--ink);
+  margin: 0;
+}
+.date i { font-style: normal; font-size: .4em; line-height: .6; color: var(--gold); }
+.weekday { font-family: var(--f-body); font-style: italic; font-size: 22px; color: var(--ink-soft); margin: 0; }
+
+.place { display: grid; gap: 2px; }
+.place .caps:first-child { font-style: italic; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 50px; padding: 12px 34px;
+  font-family: var(--f-caps); text-transform: uppercase; letter-spacing: .16em; font-size: 15px;
+  color: var(--ivory); background: #b6a28a;
+  border: 0; border-radius: 0;
+  text-decoration: none; cursor: pointer;
+  transition: background .25s ease, transform .25s ease;
+}
+.btn:hover { background: #9c876f; }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible, .link:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, .choice input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 3px; }
+.btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink-soft); }
+.btn--ghost:hover { background: rgba(255, 255, 255, .5); }
+.btn-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.link { color: var(--ink-soft); font-size: 17px; font-style: italic; text-underline-offset: 4px; }
+
+/* countdown */
+.count { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; width: 100%; max-width: 400px; }
+.count div { display: grid; gap: 2px; }
+.count b { font-weight: 300; font-size: clamp(38px, 11vw, 54px); line-height: 1; font-variant-numeric: lining-nums tabular-nums; }
+.count small { font-family: var(--f-caps); font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+.count-done { font-family: var(--f-body); font-style: italic; font-size: 24px; margin: 0; }
+
+/* timing */
+.timeline { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; width: 100%; max-width: 340px; }
+.timeline li { display: grid; justify-items: center; gap: 4px; padding-block: 18px; position: relative; }
+.timeline li + li::before { content: ""; position: absolute; top: -10px; left: 50%; width: 1px; height: 20px; background: var(--line); }
+.timeline time { font-family: var(--f-body); font-size: 38px; font-weight: 300; line-height: 1; font-variant-numeric: lining-nums; }
+.timeline .caps { font-size: 15px; color: var(--ink-soft); }
+
+/* dress code */
+.swatches { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 6px 0; padding: 0; list-style: none; }
+.swatches li { width: 46px; height: 46px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(60, 40, 20, .12), 0 6px 14px rgba(80, 60, 40, .16); }
+
+/* rsvp */
+form { display: grid; gap: 18px; width: 100%; max-width: 380px; text-align: left; }
+label, legend { font-family: var(--f-caps); text-transform: uppercase; letter-spacing: .14em; font-size: 13px; color: var(--ink-soft); }
+.field { display: grid; gap: 6px; }
+input[type="text"], textarea, select {
+  width: 100%; font: inherit; font-size: 19px; color: var(--ink);
+  background: rgba(255, 255, 255, .6);
+  border: 0; border-bottom: 1px solid var(--ink-soft); border-radius: 0;
+  padding: 10px 12px;
+}
+textarea { resize: vertical; min-height: 84px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
+.choice { display: block; cursor: pointer; }
+.choice input { position: absolute; opacity: 0; pointer-events: none; }
+.choice span {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; font-size: 19px;
+  background: rgba(255, 255, 255, .45); box-shadow: inset 0 0 0 1px var(--line);
+  transition: background .2s ease, box-shadow .2s ease;
+}
+.choice span::before { content: ""; width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--ink-soft); flex: none; transition: box-shadow .2s ease, background .2s ease; }
+.choice input:checked + span { background: rgba(255, 255, 255, .85); box-shadow: inset 0 0 0 1px var(--ink-soft); }
+.choice input:checked + span::before { background: var(--gold); box-shadow: inset 0 0 0 3px var(--ivory), 0 0 0 1px var(--gold); }
+.error { color: #8a3b2b; font-size: 16px; margin: 0; min-height: 1.2em; }
+.thanks { display: grid; justify-items: center; gap: 14px; }
+.thanks p { margin: 0; }
+
+/* finale */
+.finale { padding-bottom: 120px; }
+.finale .script { font-size: clamp(48px, 13vw, 72px); }
+.sign { font-family: var(--f-script); font-size: 40px; line-height: 1; margin: 0; color: var(--gold); }
+
+/* ---------- ornaments ---------- */
+.branch { position: absolute; width: clamp(110px, 30vw, 170px); pointer-events: none; z-index: 2; }
+.branch--tl { top: -18px; left: -40px; }
+.branch--tr { top: -24px; right: -44px; transform: scaleX(-1); }
+.branch--bl { bottom: -30px; left: -46px; transform: scaleY(-1) rotate(-10deg); }
+.branch--br { bottom: -26px; right: -42px; transform: scale(-1, -1) rotate(-6deg); }
+.branch svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+.bloom { position: absolute; width: clamp(120px, 34vw, 210px); pointer-events: none; z-index: 2; opacity: .95; }
+.bloom svg { width: 100%; height: auto; display: block; }
+.bloom--l { left: -70px; }
+.bloom--r { right: -74px; }
+
+.bfly { position: absolute; width: 64px; pointer-events: none; z-index: 3; filter: drop-shadow(0 4px 6px rgba(80, 60, 40, .25)); }
+.bfly svg { width: 100%; height: auto; display: block; overflow: visible; }
+.bfly .wl { transform-box: fill-box; transform-origin: right center; animation: flapL 1.1s ease-in-out infinite; }
+.bfly .wr { transform-box: fill-box; transform-origin: left center; animation: flapR 1.1s ease-in-out infinite; }
+.bfly.drift { animation: float 9s ease-in-out infinite; }
+
+.divider { display: flex; align-items: center; justify-content: center; gap: 14px; color: var(--gold); width: 100%; }
+.divider::before, .divider::after { content: ""; height: 1px; flex: 1; max-width: 90px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.divider::after { transform: scaleX(-1); }
+
+/* gentle reveal from a readable resting state */
+.reveal { transition: transform 1s cubic-bezier(.2, .7, .2, 1), opacity 1s ease; }
+.js .reveal:not(.in) { transform: translateY(22px); opacity: .45; }
+
+/* ---------- motion ---------- */
+@keyframes flapL { 0%, 100% { transform: scaleX(1) } 50% { transform: scaleX(.35) skewY(6deg) } }
+@keyframes flapR { 0%, 100% { transform: scaleX(1) } 50% { transform: scaleX(.35) skewY(-6deg) } }
+@keyframes float { 0%, 100% { transform: translate(0, 0) rotate(-6deg) } 33% { transform: translate(14px, -18px) rotate(4deg) } 66% { transform: translate(-10px, -6px) rotate(-2deg) } }
+@keyframes drift { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(8px) } }
+@keyframes breathe { 0%, 100% { opacity: .55 } 50% { opacity: 1 } }
+@keyframes pulse { 0%, 100% { box-shadow: inset 0 0 0 5px rgba(255, 240, 200, .25), inset 0 -4px 8px rgba(80, 50, 10, .35), 0 3px 8px rgba(70, 45, 15, .35), 0 0 0 0 rgba(214, 180, 120, .5) } 50% { box-shadow: inset 0 0 0 5px rgba(255, 240, 200, .25), inset 0 -4px 8px rgba(80, 50, 10, .35), 0 3px 8px rgba(70, 45, 15, .35), 0 0 0 14px rgba(214, 180, 120, 0) } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  html { scroll-behavior: auto; }
+  .js .reveal:not(.in) { transform: none; opacity: 1; }
+}
+
+@media (min-width: 700px) {
+  section { padding-block: 104px; }
+  .bfly { width: 76px; }
+}
+</style>
+</head>
+<body class="locked">
+
+<canvas id="satin" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+
+<!-- Envelope intro -->
+<div class="intro" id="intro" role="dialog" aria-label="Открыть приглашение">
+  <div class="intro__inner">
+    <p class="intro__lead">Для вас<em>приглашение</em></p>
+    <div class="env">
+      <div class="env__back"></div>
+      <div class="env__card" data-bind="names-short">Александр &amp; Вера</div>
+      <div class="env__front"></div>
+      <div class="env__flap"></div>
+      <button class="seal" id="seal" type="button" aria-label="Открыть конверт" data-bind="initials">А&amp;В</button>
+    </div>
+    <p class="intro__hint">Нажмите на печать</p>
+  </div>
+</div>
+
+<main class="page">
+  <div class="veil">
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="branch branch--tl" data-ornament="branch"></div>
+      <p class="hero__whisper" aria-hidden="true">Ты заставляешь<br>меня сиять</p>
+      <div class="bfly drift" style="top: 64%; left: -18px; animation-delay: -2s" data-ornament="bfly"></div>
+      <div class="bfly drift" style="top: 18%; right: 14%; width: 44px; animation-delay: -5s" data-ornament="bfly"></div>
+
+      <h1 class="script reveal">Save the date</h1>
+      <p class="names reveal" data-bind="names-html">Александр <span>&amp;</span> Вера</p>
+      <a class="scroll-cue caps" href="#invite">
+        Листайте вниз
+        <svg width="22" height="34" viewBox="0 0 22 34" fill="none" aria-hidden="true"><path d="M11 1v30M2 23l9 9 9-9" stroke="currentColor" stroke-width="1"/></svg>
+      </a>
+    </section>
+
+    <!-- Invitation + date + place -->
+    <section id="invite">
+      <div class="bloom bloom--r" style="top: 38%" data-ornament="bloom"></div>
+      <div class="bfly drift" style="top: 30%; left: 2%; width: 54px; animation-delay: -1s" data-ornament="bfly"></div>
+
+      <p class="caps reveal">Приглашаем вас разделить<br>с нами радость и счастье<br>нашего свадебного дня</p>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="date reveal" aria-label="7 октября 2026">
+        <span data-bind="dd">07</span><i>•</i><span data-bind="mm">10</span><i>•</i><span data-bind="yy">26</span>
+      </p>
+      <p class="weekday" data-bind="weekday">среда</p>
+      <div class="place reveal">
+        <p class="caps" data-bind="venue">Ресторан «Frunze»</p>
+        <p class="caps" data-bind="address">улица Абдумомунова, 220А</p>
+      </div>
+      <div class="btn-row">
+        <a class="btn" id="map-link" href="#" target="_blank" rel="noopener">Как добраться</a>
+      </div>
+      <a class="link" id="gmap-link" href="#" target="_blank" rel="noopener">Открыть в Google Картах</a>
+    </section>
+
+    <!-- Countdown -->
+    <section id="countdown">
+      <div class="divider" aria-hidden="true">✦</div>
+      <p class="caps">До торжества осталось</p>
+      <div class="count" id="count" aria-live="polite">
+        <div><b data-u="d">00</b><small>дней</small></div>
+        <div><b data-u="h">00</b><small>часов</small></div>
+        <div><b data-u="m">00</b><small>минут</small></div>
+        <div><b data-u="s">00</b><small>секунд</small></div>
+      </div>
+      <p class="count-done" id="count-done" hidden>Этот день настал!</p>
+      <a class="btn btn--ghost" id="cal-link" href="#" target="_blank" rel="noopener">Добавить в календарь</a>
+    </section>
+
+    <!-- Timing -->
+    <section id="timing">
+      <div class="branch branch--tr" data-ornament="branch"></div>
+      <div class="bloom bloom--l" style="top: 46%" data-ornament="bloom"></div>
+      <div class="bfly drift" style="top: 12%; left: 10%; width: 50px; animation-delay: -3s" data-ornament="bfly"></div>
+
+      <h2 class="script reveal">Timing</h2>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <!-- Dress code -->
+    <section id="dress">
+      <div class="divider" aria-hidden="true">✦</div>
+      <h2 class="script reveal">Dress code</h2>
+      <p class="small">Будем рады, если в своих нарядах вы поддержите нежную палитру нашего праздника</p>
+      <ul class="swatches" id="swatches" aria-label="Цвета дресс-кода"></ul>
+      <p class="small">Просим не выбирать белый цвет — он для невесты</p>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp">
+      <div class="branch branch--bl" data-ornament="branch"></div>
+      <div class="bfly drift" style="top: 8%; right: 6%; width: 52px; animation-delay: -4s" data-ornament="bfly"></div>
+
+      <h2 class="script reveal">Анкета гостя</h2>
+      <p class="small" data-bind="rsvp-note">Пожалуйста, подтвердите своё присутствие до 1 сентября</p>
+
+      <form id="rsvp-form" novalidate>
+        <div class="field">
+          <label for="guest-name">Ваше имя и фамилия</label>
+          <input type="text" id="guest-name" name="name" autocomplete="name" placeholder="Например, Айгерим Садыкова">
+        </div>
+        <fieldset>
+          <legend>Сможете ли прийти?</legend>
+          <label class="choice"><input type="radio" id="attend-yes" name="attend" value="yes"><span>С радостью приду</span></label>
+          <label class="choice"><input type="radio" id="attend-no" name="attend" value="no"><span>К сожалению, не смогу</span></label>
+        </fieldset>
+        <div class="field" id="guests-field">
+          <label for="guest-count">Сколько вас будет</label>
+          <select id="guest-count" name="count">
+            <option value="1">Только я</option>
+            <option value="2">Нас двое</option>
+            <option value="3">Трое</option>
+            <option value="4">Четверо</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="guest-note">Пожелания (необязательно)</label>
+          <textarea id="guest-note" name="note" placeholder="Например, не пью алкоголь"></textarea>
+        </div>
+        <p class="error" id="form-error" role="alert"></p>
+        <button class="btn" type="submit">Отправить ответ</button>
+      </form>
+
+      <div class="thanks" id="thanks" hidden>
+        <p class="script" style="font-size: 52px">Спасибо!</p>
+        <p class="small" id="thanks-text">Мы получили ваш ответ.</p>
+        <a class="btn" id="wa-link" href="#" target="_blank" rel="noopener" hidden>Отправить в WhatsApp</a>
+        <button class="link" id="edit-answer" type="button" style="background:none;border:0;cursor:pointer;font:inherit;font-style:italic">Изменить ответ</button>
+      </div>
+    </section>
+
+    <!-- Finale -->
+    <section class="finale">
+      <div class="branch branch--br" data-ornament="branch"></div>
+      <div class="bfly drift" style="top: 22%; left: 8%; width: 46px; animation-delay: -6s" data-ornament="bfly"></div>
+      <h2 class="script reveal">Ждём вас!</h2>
+      <p class="small">Будем счастливы видеть вас рядом в этот особенный день</p>
+      <p class="sign" data-bind="names-short">Александр &amp; Вера</p>
+    </section>
+
+  </div>
+</main>
+
+<script>
+/* ==========================================================
+   НАСТРОЙКИ — меняйте данные здесь
+   ========================================================== */
+const CONFIG = {
+  groom: "Александр",
+  bride: "Вера",
+  // дата и время начала (часовой пояс Бишкека +06:00)
+  date: "2026-10-07T16:00:00+06:00",
+  endDate: "2026-10-07T23:00:00+06:00",
+  venue: "Ресторан «Frunze»",
+  address: "улица Абдумомунова, 220А",
+  city: "Бишкек",
+  // ссылка «Как добраться» (2ГИС) и запасная ссылка на Google Карты
+  map2gis: "https://2gis.kg/bishkek/search/Frunze%20%D0%90%D0%B1%D0%B4%D1%83%D0%BC%D0%BE%D0%BC%D1%83%D0%BD%D0%BE%D0%B2%D0%B0%20220%D0%90",
+  mapGoogle: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Ресторан Frunze, Абдумомунова 220А, Бишкек"),
+  timing: [
+    { time: "16:00", title: "Сбор гостей" },
+    { time: "17:00", title: "Начало торжества" },
+    { time: "23:00", title: "Завершение вечера" }
+  ],
+  dressColors: ["#f4ede2", "#e6d6bf", "#cfb795", "#a88b6b", "#6f5948"],
+  rsvpNote: "Пожалуйста, подтвердите своё присутствие до 1 сентября",
+  // номер WhatsApp для ответов гостей, только цифры, например "996700123456"
+  // если оставить пустым, кнопка WhatsApp не появится
+  whatsapp: ""
+};
+</script>
+
+<script>
+(function () {
+  "use strict";
+  document.documentElement.classList.add("js");
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- fill content from CONFIG ---------- */
+  const start = new Date(CONFIG.date);
+  const end = new Date(CONFIG.endDate || CONFIG.date);
+  const pad = (n) => String(n).padStart(2, "0");
+  // show the date as it is in the venue's timezone (+06:00)
+  const local = new Date(start.getTime() + 6 * 3600e3);
+  const weekdays = ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"];
+  const binds = {
+    "names-short": `${CONFIG.groom} & ${CONFIG.bride}`,
+    "initials": `${CONFIG.groom[0]}&${CONFIG.bride[0]}`,
+    "dd": pad(local.getUTCDate()),
+    "mm": pad(local.getUTCMonth() + 1),
+    "yy": String(local.getUTCFullYear()).slice(-2),
+    "weekday": weekdays[local.getUTCDay()],
+    "venue": CONFIG.venue,
+    "address": CONFIG.address,
+    "rsvp-note": CONFIG.rsvpNote
+  };
+  $$("[data-bind]").forEach((el) => {
+    const k = el.dataset.bind;
+    if (k === "names-html") {
+      el.textContent = "";
+      el.append(CONFIG.groom + " ");
+      const amp = document.createElement("span"); amp.textContent = "&"; el.append(amp);
+      el.append(" " + CONFIG.bride);
+    } else if (k in binds) el.textContent = binds[k];
+  });
+  $(".date").setAttribute("aria-label", local.toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }));
+  $("#map-link").href = CONFIG.map2gis || CONFIG.mapGoogle;
+  $("#gmap-link").href = CONFIG.mapGoogle;
+  if (!CONFIG.map2gis) $("#gmap-link").hidden = true;
+
+  const gcal = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+  $("#cal-link").href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+    "&text=" + encodeURIComponent(`Свадьба: ${CONFIG.groom} и ${CONFIG.bride}`) +
+    "&dates=" + gcal(start) + "/" + gcal(end) +
+    "&location=" + encodeURIComponent(`${CONFIG.venue}, ${CONFIG.address}, ${CONFIG.city}`);
+
+  const tl = $("#timeline");
+  CONFIG.timing.forEach((t) => {
+    const li = document.createElement("li"); li.className = "reveal";
+    const time = document.createElement("time"); time.textContent = t.time;
+    const p = document.createElement("p"); p.className = "caps"; p.textContent = t.title;
+    li.append(time, p); tl.append(li);
+  });
+  const sw = $("#swatches");
+  CONFIG.dressColors.forEach((c) => { const li = document.createElement("li"); li.style.background = c; li.title = c; sw.append(li); });
+
+  /* ---------- ornaments ---------- */
+  const BFLY = `<svg viewBox="-50 -40 100 80" aria-hidden="true">
+    <defs>
+      <linearGradient id="bw__ID" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fffdf8"/><stop offset=".55" stop-color="#f3e7d2"/><stop offset="1" stop-color="#d9c29b"/>
+      </linearGradient>
+    </defs>
+    <g class="wl">
+      <path d="M-1 -2 C -10 -22 -30 -38 -44 -33 C -53 -27 -45 -8 -20 -3 Z" fill="url(#bw__ID)" stroke="#c4a473" stroke-width=".7" opacity=".95"/>
+      <path d="M-1 2 C -17 4 -35 14 -31 28 C -25 36 -9 26 -1 6 Z" fill="url(#bw__ID)" stroke="#c4a473" stroke-width=".7" opacity=".9"/>
+      <path d="M-6 -6 C -16 -18 -28 -26 -38 -28 M-8 4 C -16 10 -24 18 -26 25" stroke="#c4a473" stroke-width=".4" fill="none" opacity=".7"/>
+      <circle cx="-30" cy="-22" r="1.3" fill="#fff"/><circle cx="-22" cy="-12" r=".9" fill="#fff"/><circle cx="-20" cy="18" r="1" fill="#fff"/>
+    </g>
+    <g class="wr">
+      <path d="M1 -2 C 10 -22 30 -38 44 -33 C 53 -27 45 -8 20 -3 Z" fill="url(#bw__ID)" stroke="#c4a473" stroke-width=".7" opacity=".95"/>
+      <path d="M1 2 C 17 4 35 14 31 28 C 25 36 9 26 1 6 Z" fill="url(#bw__ID)" stroke="#c4a473" stroke-width=".7" opacity=".9"/>
+      <path d="M6 -6 C 16 -18 28 -26 38 -28 M8 4 C 16 10 24 18 26 25" stroke="#c4a473" stroke-width=".4" fill="none" opacity=".7"/>
+      <circle cx="30" cy="-22" r="1.3" fill="#fff"/><circle cx="22" cy="-12" r=".9" fill="#fff"/><circle cx="20" cy="18" r="1" fill="#fff"/>
+    </g>
+    <ellipse cx="0" cy="1" rx="1.8" ry="12" fill="#8f7354"/>
+    <path d="M-1 -10 C -4 -18 -8 -22 -11 -23 M1 -10 C 4 -18 8 -22 11 -23" stroke="#8f7354" stroke-width=".6" fill="none"/>
+  </svg>`;
+
+  // blossom used on branches: five soft petals with a golden heart
+  const petal = (i, r) => `<ellipse cx="0" cy="${-r}" rx="${r * .62}" ry="${r}" transform="rotate(${i * 72})" fill="url(#pt)" stroke="#e7d9c3" stroke-width=".5"/>`;
+  const blossom = (x, y, r, rot) => `<g transform="translate(${x} ${y}) rotate(${rot})">${[0,1,2,3,4].map((i) => petal(i, r)).join("")}
+      <circle r="${r * .28}" fill="#e9cf98"/>${[0,1,2,3,4,5].map((i) => `<circle cx="${Math.cos(i) * r * .4}" cy="${Math.sin(i) * r * .4}" r=".9" fill="#b98f4e"/>`).join("")}</g>`;
+  const BRANCH = `<svg viewBox="0 0 170 240" aria-hidden="true">
+    <defs><radialGradient id="pt" cx=".5" cy=".75" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#fbf6ee"/><stop offset="1" stop-color="#eadcc5"/></radialGradient></defs>
+    <path d="M6 4 C 40 40 60 70 70 120 C 78 160 96 200 120 236" stroke="#7d6450" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M58 82 C 80 80 100 70 118 52 M74 150 C 96 150 118 142 140 128 M40 46 C 30 62 26 80 30 98" stroke="#7d6450" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    ${blossom(118, 52, 13, 10)}${blossom(30, 98, 11, -20)}${blossom(140, 128, 12, 30)}${blossom(64, 100, 9, 5)}${blossom(98, 196, 10, 50)}
+    <circle cx="90" cy="72" r="3.2" fill="#f7efe2" stroke="#e1d1b8" stroke-width=".5"/><circle cx="114" cy="146" r="2.8" fill="#f7efe2" stroke="#e1d1b8" stroke-width=".5"/>
+    <circle cx="18" cy="18" r="2.6" fill="#f7efe2" stroke="#e1d1b8" stroke-width=".5"/>
+  </svg>`;
+  // large pearly flower like the satin petals in the reference
+  const bigPetal = (rot, id) => `<path d="M0 0 C -46 -20 -60 -92 -14 -112 C 10 -122 40 -110 46 -78 C 54 -40 30 -12 0 0 Z" transform="rotate(${rot})" fill="url(#${id})" stroke="#e8dcc8" stroke-width="1"/>`;
+  const BLOOM = (id) => `<svg viewBox="-130 -130 260 260" aria-hidden="true">
+    <defs>
+      <radialGradient id="${id}" cx=".45" cy=".25" r=".9">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#f7f0e4"/><stop offset=".8" stop-color="#e6d6bc"/><stop offset="1" stop-color="#cdb48e"/>
+      </radialGradient>
+      <radialGradient id="${id}c" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#f3d28c"/><stop offset="1" stop-color="#c79b55" stop-opacity="0"/></radialGradient>
+    </defs>
+    ${[0, 72, 144, 216, 288].map((r) => bigPetal(r, id)).join("")}
+    <circle r="26" fill="url(#${id}c)"/>
+    ${[0,1,2,3,4,5,6,7].map((i) => `<line x1="0" y1="0" x2="${Math.cos(i * .8) * 18}" y2="${Math.sin(i * .8) * 18}" stroke="#b88d4c" stroke-width="1"/><circle cx="${Math.cos(i * .8) * 18}" cy="${Math.sin(i * .8) * 18}" r="2" fill="#c99c52"/>`).join("")}
+  </svg>`;
+
+  let uid = 0;
+  $$("[data-ornament]").forEach((el) => {
+    const kind = el.dataset.ornament; uid++;
+    if (kind === "bfly") el.innerHTML = BFLY.replace(/__ID/g, uid);
+    if (kind === "branch") el.innerHTML = BRANCH;
+    if (kind === "bloom") el.innerHTML = BLOOM("bl" + uid);
+    if (kind === "bfly") {
+      const d = (0.9 + Math.random() * 0.5).toFixed(2) + "s";
+      $$(".wl, .wr", el).forEach((w) => { w.style.animationDuration = d; });
+    }
+  });
+
+  /* ---------- satin backdrop (painted once per resize) ---------- */
+  const cv = $("#satin");
+  const ctx = cv.getContext("2d");
+  const stops = [[0, [120, 98, 76]], [0.35, [176, 152, 122]], [0.62, [222, 204, 176]], [0.85, [244, 234, 216]], [1, [255, 251, 243]]];
+  const tone = (t) => {
+    t = Math.max(0, Math.min(1, t));
+    for (let i = 1; i < stops.length; i++) {
+      if (t <= stops[i][0]) {
+        const [a, ca] = stops[i - 1], [b, cb] = stops[i];
+        const k = (t - a) / (b - a);
+        return [ca[0] + (cb[0] - ca[0]) * k, ca[1] + (cb[1] - ca[1]) * k, ca[2] + (cb[2] - ca[2]) * k];
+      }
+    }
+    return stops[stops.length - 1][1];
+  };
+  function paint() {
+    const S = 4;
+    const w = Math.ceil(window.innerWidth / S), h = Math.ceil(window.innerHeight / S);
+    cv.width = w; cv.height = h;
+    const img = ctx.createImageData(w, h);
+    const d = img.data;
+    const drapeStart = h * 0.68;
+    for (let y = 0; y < h; y++) {
+      const yn = y / h;
+      for (let x = 0; x < w; x++) {
+        const xn = x / w;
+        // curtain: vertical folds that sway with height
+        const sway = Math.sin(yn * 3.2 + xn * 2) * 0.05;
+        const u = (xn + sway) * 7;
+        let c = 0.55 + 0.22 * Math.sin(u * 2.1 + 0.6) + 0.12 * Math.sin(u * 5.3 + 1.3) + 0.06 * Math.sin(u * 11.7);
+        // window light from the top center
+        c += 0.32 * Math.exp(-Math.pow((xn - 0.5) / 0.22, 2)) * (1 - yn * 0.6);
+        // satin on the floor: horizontal waves
+        if (y > drapeStart) {
+          const k = Math.min(1, (y - drapeStart) / (h * 0.12));
+          const v = yn * 26 + Math.sin(xn * 5 + yn * 7) * 1.6 + Math.sin(xn * 13) * 0.4;
+          const floor = 0.6 + 0.24 * Math.sin(v) + 0.1 * Math.sin(v * 2.3 + 1) + 0.12 * (1 - yn);
+          c = c * (1 - k) + floor * k;
+        }
+        c -= 0.12 * Math.pow(Math.abs(xn - 0.5) * 2, 3);
+        const [r, g, b] = tone(c);
+        const i = (y * w + x) * 4;
+        d[i] = r; d[i + 1] = g; d[i + 2] = b; d[i + 3] = 255;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+  try { paint(); } catch (e) { /* gradient fallback stays */ }
+  let rt;
+  window.addEventListener("resize", () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => { try { paint(); } catch (e) {} }, 200);
+  });
+
+  /* ---------- envelope ---------- */
+  const intro = $("#intro");
+  let opened = false;
+  function openEnvelope() {
+    if (opened) return; opened = true;
+    intro.classList.add("open");
+    setTimeout(() => { document.body.classList.remove("locked"); intro.setAttribute("aria-hidden", "true"); }, reduce ? 0 : 1900);
+  }
+  intro.addEventListener("click", openEnvelope);
+  intro.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openEnvelope(); } });
+  if (location.hash && location.hash.length > 1) { openEnvelope(); }
+
+  /* ---------- reveal on scroll ---------- */
+  const items = $$(".reveal");
+  if ("IntersectionObserver" in window && !reduce) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { threshold: 0.15 });
+    items.forEach((el) => io.observe(el));
+  } else items.forEach((el) => el.classList.add("in"));
+
+  /* ---------- countdown ---------- */
+  const units = { d: $('[data-u="d"]'), h: $('[data-u="h"]'), m: $('[data-u="m"]'), s: $('[data-u="s"]') };
+  function tick() {
+    let diff = Math.floor((start - Date.now()) / 1000);
+    if (diff <= 0) {
+      $("#count").hidden = true; $("#count-done").hidden = false;
+      $("#countdown .caps").textContent = Date.now() < end ? "Праздник уже идёт" : "Спасибо, что были с нами";
+      $("#cal-link").hidden = true;
+      return false;
+    }
+    const dd = Math.floor(diff / 86400); diff -= dd * 86400;
+    const hh = Math.floor(diff / 3600); diff -= hh * 3600;
+    const mm = Math.floor(diff / 60); const ss = diff - mm * 60;
+    units.d.textContent = dd; units.h.textContent = pad(hh); units.m.textContent = pad(mm); units.s.textContent = pad(ss);
+    return true;
+  }
+  if (tick()) { const iv = setInterval(() => { if (!tick()) clearInterval(iv); }, 1000); }
+
+  /* ---------- RSVP ---------- */
+  const form = $("#rsvp-form"), thanks = $("#thanks"), err = $("#form-error");
+  const guestsField = $("#guests-field");
+  form.addEventListener("change", () => {
+    const no = form.attend.value === "no";
+    guestsField.hidden = no;
+  });
+  const KEY = "rsvp-" + CONFIG.groom + "-" + CONFIG.bride;
+  function showThanks(a) {
+    form.hidden = true; thanks.hidden = false;
+    $("#thanks-text").textContent = a.attend === "yes"
+      ? `${a.name}, мы очень ждём вас!`
+      : `${a.name}, жаль, что не получится. Спасибо, что сообщили.`;
+    const wa = $("#wa-link");
+    if (CONFIG.whatsapp) {
+      const lines = [
+        `Ответ на приглашение (${CONFIG.groom} и ${CONFIG.bride})`,
+        `Имя: ${a.name}`,
+        `Приду: ${a.attend === "yes" ? "да" : "нет"}`
+      ];
+      if (a.attend === "yes") lines.push(`Количество гостей: ${a.count}`);
+      if (a.note) lines.push(`Пожелания: ${a.note}`);
+      wa.href = "https://wa.me/" + CONFIG.whatsapp.replace(/\D/g, "") + "?text=" + encodeURIComponent(lines.join("\n"));
+      wa.hidden = false;
+      $("#thanks-text").textContent += " Нажмите кнопку ниже, чтобы отправить ответ нам в WhatsApp.";
+    } else wa.hidden = true;
+  }
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const a = {
+      name: form.name.value.trim(),
+      attend: form.attend.value,
+      count: form.count.value,
+      note: form.note.value.trim()
+    };
+    if (!a.name) { err.textContent = "Напишите, пожалуйста, ваше имя."; form.name.focus(); return; }
+    if (!a.attend) { err.textContent = "Отметьте, сможете ли вы прийти."; return; }
+    err.textContent = "";
+    try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (x) {}
+    showThanks(a);
+  });
+  $("#edit-answer").addEventListener("click", () => { thanks.hidden = true; form.hidden = false; });
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+    if (saved && saved.name) {
+      form.name.value = saved.name;
+      const r = form.querySelector(`input[name="attend"][value="${saved.attend}"]`); if (r) r.checked = true;
+      form.count.value = saved.count || "1"; form.note.value = saved.note || "";
+      guestsField.hidden = saved.attend === "no";
+      showThanks(saved);
+    }
+  } catch (x) {}
+})();
+</script>
+</body>
+</html>
