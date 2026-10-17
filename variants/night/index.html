@@ -535,14 +535,6 @@ body.lit .names__b.foil { animation-delay: .25s; }
     </div>
   </section>
 
-  <section class="section dress" id="dress" aria-labelledby="dress-h">
-    <div class="wrap">
-      <h2 class="h-sec" id="dress-h">Дресс-код</h2>
-      <p class="dress__lead">Вечер пройдёт в глубоких ночных тонах. Будем рады, если вы поддержите палитру праздника.</p>
-      <ul class="swatches" id="swatches" aria-label="Цвета дресс-кода"></ul>
-      <p class="dress__note">Просим не выбирать белый цвет — он для невесты.</p>
-    </div>
-  </section>
 
   <section class="section rsvp" id="rsvp" aria-labelledby="rsvp-h">
     <div class="wrap">
@@ -623,14 +615,6 @@ const CONFIG = {
     { time: "16:00", title: "Сбор гостей" },
     { time: "17:00", title: "Начало торжества" },
     { time: "23:00", title: "Завершение вечера" }
-  ],
-  // палитра дресс-кода: цвет и подпись (можно указать просто строку "#hex")
-  dressColors: [
-    { hex: "#3b1d45", name: "Слива" },
-    { hex: "#1d3a31", name: "Хвоя" },
-    { hex: "#5e1a2c", name: "Бордо" },
-    { hex: "#1c2744", name: "Полночь" },
-    { hex: "#a9843f", name: "Старое золото" }
   ],
   // подпись к анкете
   rsvpNote: "Пожалуйста, подтвердите своё присутствие до 1 сентября",
@@ -770,7 +754,7 @@ const CONFIG = {
     else if (k === "sprig") el.innerHTML = sprig;
   });
 
-  /* ---------- программа и дресс-код ---------- */
+  /* ---------- программа ---------- */
   const flameMark = `<svg viewBox="0 0 17 26" aria-hidden="true"><path d="M8.5 1 C 13 8 15.5 13 15 17.5 C 14.5 22 11.8 25 8.5 25 C 5.2 25 2.5 22 2 17.5 C 1.5 13 4 8 8.5 1 Z" fill="#ffb760" opacity=".25"/><path d="M8.5 7 C 11 11 12.2 14 12 17 C 11.8 20 10.3 22 8.5 22 C 6.7 22 5.2 20 5 17 C 4.8 14 6 11 8.5 7 Z" fill="#f4dca3"/></svg>`;
   const tl = $("#timeline");
   CONFIG.timing.forEach((t) => {
@@ -779,17 +763,6 @@ const CONFIG = {
     const tm = document.createElement("time"); tm.textContent = t.time;
     const p = document.createElement("p"); p.textContent = t.title;
     li.append(tm, p); tl.append(li);
-  });
-  const sw = $("#swatches");
-  CONFIG.dressColors.forEach((c) => {
-    const hex = typeof c === "string" ? c : c.hex;
-    const name = typeof c === "string" ? "" : (c.name || "");
-    const li = document.createElement("li");
-    const dot = document.createElement("i"); dot.style.background = hex;
-    li.append(dot);
-    if (name) { const s = document.createElement("span"); s.textContent = name; li.append(s); }
-    else li.setAttribute("aria-label", hex);
-    sw.append(li);
   });
 
   /* ---------- вступление: зажечь свечу ---------- */

@@ -486,18 +486,6 @@ fieldset[aria-invalid="true"] .choice span { box-shadow: inset 0 0 0 1px var(--e
     </div>
   </section>
 
-  <section class="sec" id="dress" aria-labelledby="dress-h" style="padding-top:0">
-    <div class="wrap sec-grid">
-      <div class="sec-head">
-        <h2 class="h2" id="dress-h">Дресс-код</h2>
-        <p class="lede" style="margin-top:14px">Будем рады, если вы поддержите палитру вечера.</p>
-      </div>
-      <div class="sec-body">
-        <ul class="swatches" id="swatches"></ul>
-        <p class="note-white">Просим не выбирать белый цвет — он для невесты.</p>
-      </div>
-    </div>
-  </section>
 
   <section class="sec" id="rsvp" aria-labelledby="rsvp-h" style="padding-top:0">
     <div class="wrap sec-grid">
@@ -593,15 +581,6 @@ const CONFIG = {
     { time: "17:00", title: "Начало торжества" },
     { time: "23:00", title: "Завершение вечера" }
   ],
-  // палитра дресс-кода: цвет и подпись
-  dressColors: [
-    { color: "#2335C2", name: "Ультрамарин" },
-    { color: "#1B2150", name: "Полночный синий" },
-    { color: "#5B6478", name: "Сланец" },
-    { color: "#B9BEC8", name: "Серебро" },
-    { color: "#CBC3DA", name: "Дымчатая сирень" },
-    { color: "#2E2F33", name: "Графит" }
-  ],
   // текст под заголовком анкеты
   rsvpNote: "Пожалуйста, подтвердите своё присутствие до 1 сентября",
   // номер WhatsApp для ответов гостей, только цифры, например "996700123456".
@@ -684,7 +663,6 @@ const CONFIG = {
   });
 
   // выкраски: полоса краски с неровным краем, как пробный оттиск
-  const sw = $("#swatches");
   let seed = 11;
   const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
   const edge = () => {
@@ -696,13 +674,6 @@ const CONFIG = {
     }
     return d + "Z";
   };
-  CONFIG.dressColors.forEach((c) => {
-    const item = typeof c === "string" ? { color: c, name: c } : c;
-    const li = document.createElement("li"); li.className = "swatch";
-    li.innerHTML = `<svg viewBox="0 0 60 92" aria-hidden="true"><path d="${edge()}" fill="${item.color}"/></svg>`;
-    const cap = document.createElement("span"); cap.textContent = item.name; li.append(cap);
-    sw.append(li);
-  });
 
   // рваный (деколевый) край ультрамаринового картона
   $$(".deckle path").forEach((p, k) => {

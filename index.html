@@ -412,14 +412,6 @@ fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 8px; }
       <ol class="timeline" id="timeline"></ol>
     </section>
 
-    <!-- Dress code -->
-    <section id="dress">
-      <div class="divider" aria-hidden="true">✦</div>
-      <h2 class="script reveal">Dress code</h2>
-      <p class="small">Будем рады, если в своих нарядах вы поддержите нежную палитру нашего праздника</p>
-      <ul class="swatches" id="swatches" aria-label="Цвета дресс-кода"></ul>
-      <p class="small">Просим не выбирать белый цвет — он для невесты</p>
-    </section>
 
     <!-- RSVP -->
     <section id="rsvp">
@@ -497,7 +489,6 @@ const CONFIG = {
     { time: "17:00", title: "Начало торжества" },
     { time: "23:00", title: "Завершение вечера" }
   ],
-  dressColors: ["#f4ede2", "#e6d6bf", "#cfb795", "#a88b6b", "#6f5948"],
   rsvpNote: "Пожалуйста, подтвердите своё присутствие до 1 сентября",
   // номер WhatsApp для ответов гостей, только цифры, например "996700123456"
   // если оставить пустым, кнопка WhatsApp не появится
@@ -558,8 +549,6 @@ const CONFIG = {
     const p = document.createElement("p"); p.className = "caps"; p.textContent = t.title;
     li.append(time, p); tl.append(li);
   });
-  const sw = $("#swatches");
-  CONFIG.dressColors.forEach((c) => { const li = document.createElement("li"); li.style.background = c; li.title = c; sw.append(li); });
 
   /* ---------- ornaments ---------- */
   const BFLY = `<svg viewBox="-50 -40 100 80" aria-hidden="true">

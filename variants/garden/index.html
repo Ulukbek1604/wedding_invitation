@@ -662,22 +662,6 @@ section { position: relative; }
     </div>
   </section>
 
-  <!-- Дресс-код -->
-  <section class="block" id="dress" aria-labelledby="dress-h">
-    <div class="wrap">
-      <div class="card reveal">
-        <div class="sprig orn" data-orn="sprig" data-seed="8" aria-hidden="true"></div>
-        <p class="eyebrow">Дресс-код</p>
-        <h2 class="h2" id="dress-h">Цвета сада</h2>
-        <p class="lead">Будем рады, если в ваших нарядах встретятся оттенки нашей палитры</p>
-        <ul class="swatches" id="swatches" aria-label="Палитра дресс-кода"></ul>
-        <p class="note-white">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-9.6A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.4C19 15.6 12 20 12 20Z"/></svg>
-          <span>Просим не выбирать белый цвет — он для невесты</span>
-        </p>
-      </div>
-    </div>
-  </section>
 
   <!-- Анкета -->
   <section class="block" id="rsvp" aria-labelledby="rsvp-h">
@@ -807,15 +791,6 @@ const CONFIG = {
     { time: "16:00", title: "Сбор гостей", icon: "guests" },
     { time: "17:00", title: "Начало торжества", icon: "rings" },
     { time: "23:00", title: "Завершение вечера", icon: "moon" }
-  ],
-  // палитра дресс-кода: цвет и подпись (можно указать просто "#hex")
-  dressColors: [
-    { color: "#cbd9bf", name: "Шалфей" },
-    { color: "#7b9873", name: "Эвкалипт" },
-    { color: "#48633f", name: "Хвоя" },
-    { color: "#f3d3cd", name: "Пудра" },
-    { color: "#c98e8a", name: "Пыльная роза" },
-    { color: "#8b8f55", name: "Олива" }
   ],
   // текст под заголовком анкеты
   rsvpNote: "Пожалуйста, подтвердите своё присутствие до 20 сентября 2026 года",
@@ -1003,17 +978,6 @@ const CONFIG = {
     tl.append(li);
   });
 
-  // дресс-код
-  const sw = $("#swatches");
-  CONFIG.dressColors.forEach((c) => {
-    const item = typeof c === "string" ? { color: c, name: "" } : c;
-    const li = document.createElement("li");
-    li.className = "sw";
-    li.innerHTML = `<span class="sw__dot" aria-hidden="true"></span><span class="sw__name"></span>`;
-    $(".sw__dot", li).style.background = item.color;
-    $(".sw__name", li).textContent = item.name || item.color;
-    sw.append(li);
-  });
 
   /* ---------- обратный отсчёт ---------- */
   function plural(n, f) { const a = n % 10, b = n % 100; return f[a === 1 && b !== 11 ? 0 : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 1 : 2]; }
