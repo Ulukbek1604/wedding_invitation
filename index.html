@@ -364,6 +364,36 @@ section {
 .divider::before, .divider::after { content: ""; height: 1px; flex: 1; max-width: 90px; background: linear-gradient(90deg, transparent, var(--gold)); }
 .divider::after { transform: scaleX(-1); }
 
+/* ---------- music toggle ---------- */
+.music {
+  position: fixed; z-index: 56;
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  width: 50px; height: 50px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid rgba(176, 141, 87, .55);
+  background: rgba(251, 247, 240, .88);
+  box-shadow: 0 8px 22px rgba(90, 65, 40, .2);
+  color: var(--gold); cursor: pointer; padding: 0;
+  opacity: 0; transform: translateY(12px) scale(.9);
+  transition: opacity .8s ease, transform .8s var(--ease-out), background .3s ease;
+}
+body.ready .music { opacity: 1; transform: none; }
+.music:hover { background: #fff; }
+.music:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.music__bars { display: flex; align-items: flex-end; gap: 3px; height: 18px; }
+.music__bars i { width: 3px; height: 4px; border-radius: 2px; background: currentColor; transition: height .3s ease; }
+.music.playing .music__bars i { animation: eq 1.1s ease-in-out infinite; }
+.music.playing .music__bars i:nth-child(2) { animation-delay: -.35s; }
+.music.playing .music__bars i:nth-child(3) { animation-delay: -.7s; }
+.music.playing .music__bars i:nth-child(4) { animation-delay: -.2s; }
+.music::after { /* slash when muted */
+  content: ""; position: absolute; width: 26px; height: 1.5px; background: currentColor; rotate: -45deg; border-radius: 1px;
+  transition: opacity .3s ease;
+}
+.music.playing::after { opacity: 0; }
+@keyframes eq { 0%, 100% { height: 4px; } 50% { height: 18px; } }
+
 /* ---------- reveal choreography (only when JS runs) ---------- */
 .js .reveal { opacity: 0; transform: translateY(28px); filter: blur(6px); }
 .reveal { transition: opacity 1.1s ease var(--d, 0s), transform 1.3s var(--ease-out) var(--d, 0s), filter 1.1s ease var(--d, 0s); }
@@ -564,6 +594,11 @@ section {
 
   </div>
 </main>
+
+<audio id="music" src="audio/canon.mp3" preload="none" loop></audio>
+<button class="music" id="music-btn" type="button" aria-label="Включить музыку" aria-pressed="false">
+  <span class="music__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+</button>
 
 <script>
 /* ==========================================================
@@ -929,6 +964,41 @@ const CONFIG = {
     if (e.target === el && /mask-position/.test(e.propertyName) && el.classList.contains("in")) el.classList.add("done");
   }));
 
+  /* ---------- music: starts with the envelope, toggled by the button ---------- */
+  const music = $("#music");
+  const musicBtn = $("#music-btn");
+  let wantMusic = false, fadeRaf = 0;
+  function fadeTo(target, ms) {
+    cancelAnimationFrame(fadeRaf);
+    const from = music.volume, t0 = performance.now();
+    const step = (now) => {
+      const k = Math.min(1, (now - t0) / ms);
+      try { music.volume = from + (target - from) * k; } catch (e) {}
+      if (k < 1) fadeRaf = requestAnimationFrame(step);
+      else if (target === 0) music.pause();
+    };
+    fadeRaf = requestAnimationFrame(step);
+  }
+  function showState(on) {
+    musicBtn.classList.toggle("playing", on);
+    musicBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    musicBtn.setAttribute("aria-label", on ? "Выключить музыку" : "Включить музыку");
+  }
+  function playMusic() {
+    wantMusic = true;
+    try { music.volume = 0; } catch (e) {}
+    const p = music.play();
+    showState(true);
+    if (p && p.then) p.then(() => fadeTo(.7, 2500)).catch(() => { wantMusic = false; showState(false); });
+    else fadeTo(.7, 2500);
+  }
+  function stopMusic() { wantMusic = false; showState(false); fadeTo(0, 700); }
+  musicBtn.addEventListener("click", () => (wantMusic ? stopMusic() : playMusic()));
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) { if (wantMusic) music.pause(); }
+    else if (wantMusic) music.play().catch(() => {});
+  });
+
   /* ---------- envelope ---------- */
   const intro = $("#intro");
   const env = $("#env");
@@ -966,6 +1036,7 @@ const CONFIG = {
     }
     intro.classList.add("opening");
     burst();
+    playMusic();
     setTimeout(() => intro.classList.add("leaving"), 2300);
     setTimeout(revealPage, 2500);
     setTimeout(() => { intro.hidden = true; }, 3500);
