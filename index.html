@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#e9dcc8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comforter&family=Cormorant+Garamond:wght@300;400&display=swap" id="font-link">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comforter&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" id="font-link">
 <style>
 /* Layout: one narrow "veil" column of ivory floating over a painted satin backdrop; flowers and butterflies break its edges. */
 :root {
@@ -32,8 +32,8 @@
   --script-scale: .92;
   --script-style: normal;
   --script-weight: 400;
-  --mono-style: normal;
-  --mono-weight: 300;
+  --mono-style: italic;
+  --mono-weight: 400;
   --caps-track: .01em;
   --caps-transform: none;
   --caps-scale: 1.7;
@@ -260,7 +260,7 @@ section {
 .hero .script { font-size: calc(clamp(56px, 16vw, 92px) * var(--script-scale)); }
 .names {
   font-family: var(--f-mono); font-style: var(--mono-style); font-weight: var(--mono-weight);
-  font-size: clamp(112px, 36vw, 200px); line-height: 1;
+  font-size: clamp(96px, 30vw, 168px); line-height: 1;
   margin: 24px 0 0; white-space: nowrap;
 }
 .names .amp { font-size: .55em; padding-inline: .14em; color: var(--gold); vertical-align: .18em; font-style: normal; }
@@ -602,9 +602,9 @@ const CONFIG = {
   /* ---------- font sets (CONFIG.font, or ?font=... in the link) ---------- */
   const FONT_SETS = {
     balet: {
-      url: "family=Comforter&family=Cormorant+Garamond:wght@300;400",
+      url: "family=Comforter&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500",
       vars: { script: '"Comforter", cursive', caps: '"Comforter", cursive', body: '"Comforter", cursive', mono: '"Cormorant Garamond", Georgia, serif',
-              scriptScale: .92, scriptStyle: "normal", scriptWeight: 400, monoStyle: "normal", monoWeight: 300, capsTrack: ".01em", bodyScale: 1.45,
+              scriptScale: .92, scriptStyle: "normal", scriptWeight: 400, monoStyle: "italic", monoWeight: 400, capsTrack: ".01em", bodyScale: 1.45,
               capsTransform: "none", capsScale: 1.7, emStyle: "normal" }
     },
     klassika: {
