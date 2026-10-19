@@ -257,8 +257,8 @@ section {
 .hero .script { font-size: calc(clamp(56px, 16vw, 92px) * var(--script-scale)); }
 .names {
   font-family: var(--f-mono); font-style: var(--mono-style); font-weight: var(--mono-weight);
-  font-size: clamp(84px, 27vw, 150px); line-height: 1;
-  margin: 0; white-space: nowrap;
+  font-size: clamp(112px, 36vw, 200px); line-height: 1;
+  margin: 24px 0 0; white-space: nowrap;
 }
 .names .amp { font-size: .55em; padding-inline: .14em; color: var(--gold); vertical-align: .18em; font-style: normal; }
 .scroll-cue { display: grid; justify-items: center; gap: 12px; margin-top: 30px; color: var(--ink-soft); text-decoration: none; }
@@ -378,7 +378,7 @@ section {
 /* letters rise one by one */
 .split .ch { display: inline-block; white-space: pre; }
 .js .split .ch { opacity: 0; transform: translateY(.45em) rotate(4deg); filter: blur(5px); }
-.split .ch { transition: opacity .8s ease, transform 1s var(--ease-out), filter .8s ease; transition-delay: calc(var(--d, 0s) + var(--i) * 55ms); }
+.split .ch { transition: opacity 1.2s ease, transform 1.4s var(--ease-out), filter 1.2s ease; transition-delay: calc(var(--d, 0s) + var(--i) * 260ms); }
 .split.in .ch { opacity: 1; transform: none; filter: none; }
 
 /* children appear in sequence */
@@ -491,13 +491,12 @@ section {
     <!-- Hero -->
     <section class="hero" id="top">
       <div class="branch branch--tl" data-ornament="branch"></div>
-      <p class="hero__whisper write" style="--d: 1.6s" aria-hidden="true">Ты заставляешь<br>меня сиять</p>
+      <p class="hero__whisper write" style="--d: 1.2s" aria-hidden="true">Ты заставляешь<br>меня сиять</p>
       <div class="bfly drift" style="top: 64%; left: -18px; animation-delay: -2s" data-ornament="bfly"></div>
       <div class="bfly drift" style="top: 18%; right: 14%; width: 44px; animation-delay: -5s" data-ornament="bfly"></div>
 
-      <h1 class="script write" style="--d: .2s">Save the date</h1>
-      <p class="names split" style="--d: 1.1s" data-bind="names-html">Б + А</p>
-      <a class="scroll-cue caps reveal" style="--d: 2.2s" href="#invite">
+      <h1 class="names split" style="--d: .3s" data-bind="names-html">Б + А</h1>
+      <a class="scroll-cue caps reveal" style="--d: 1.6s" href="#invite">
         Листайте вниз
         <i aria-hidden="true"></i>
       </a>
