@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Шрифты для Б + А</title>
+<title>Шрифты для B + A</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,8 +68,8 @@ header p { margin: 0; color: var(--ink-soft); }
 (function () {
   "use strict";
   const SETS = [
-    { key: "balet", name: "Балет", note: "Comforter · Cormorant",
-      script: '"Comforter", cursive', ss: .92, scriptStyle: "normal", caps: '"Cormorant SC", serif', capsTrack: ".14em", body: '"Cormorant Infant", serif', mono: '"Cormorant Infant", serif', monoStyle: "italic", monoWeight: 300 },
+    { key: "balet", name: "Балет", note: "весь текст Comforter, монограмма Cormorant",
+      script: '"Comforter", cursive', ss: .92, scriptStyle: "normal", caps: '"Comforter", cursive', capsTrack: ".01em", capsTransform: "none", capsScale: 1.7, bodyScale: 1.45, body: '"Comforter", cursive', mono: '"Cormorant Infant", serif', monoStyle: "italic", monoWeight: 300 },
     { key: "klassika", name: "Классика", note: "Great Vibes · Forum · Cormorant",
       script: '"Great Vibes", cursive', ss: 1, scriptStyle: "normal", caps: '"Forum", serif', capsTrack: ".14em", body: '"Cormorant Garamond", serif', mono: '"Forum", serif', monoStyle: "normal", monoWeight: 400 },
     { key: "ardeko", name: "Ар-деко", note: "Playfair Display · Lora",
@@ -89,7 +89,7 @@ header p { margin: 0; color: var(--ink-soft); }
     card.className = "card";
     card.innerHTML = `
       <p class="tag">Вариант ${i + 1}<b></b></p>
-      <p class="s-mono">Б<em>+</em>А</p>
+      <p class="s-mono">B<em>+</em>A</p>
       <p class="s-caps">Приглашаем вас разделить с нами радость и счастье нашего свадебного дня</p>
       <p class="s-date">29<i>•</i>10<i>•</i>26</p>
       <p class="s-script" style="font-size: calc(clamp(38px, 11vw, 56px) * var(--ss, 1))">Ждём вас!</p>
@@ -103,8 +103,10 @@ header p { margin: 0; color: var(--ink-soft); }
     mono.style.fontFamily = s.mono; mono.style.fontStyle = s.monoStyle; mono.style.fontWeight = s.monoWeight;
     const caps = card.querySelector(".s-caps");
     caps.style.fontFamily = s.caps; caps.style.letterSpacing = s.capsTrack;
+    if (s.capsTransform) { caps.style.textTransform = s.capsTransform; caps.style.fontSize = `calc(clamp(14px, 3.7vw, 17px) * ${s.capsScale})`; caps.style.lineHeight = "1.25"; }
     card.querySelector(".s-date").style.fontFamily = s.body;
     card.querySelector(".s-body").style.fontFamily = s.body;
+    if (s.bodyScale) card.querySelector(".s-body").style.fontSize = `calc(18px * ${s.bodyScale})`;
     const a = card.querySelector(".open");
     a.href = base + "?font=" + s.key;
     a.textContent = "Открыть сайт";
