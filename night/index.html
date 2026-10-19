@@ -2,10 +2,10 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Боламан и Альбина</title>
+<title>Б + А</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Приглашение на свадьбу Боламана и Альбины, 31 октября 2026, Dalida Hall, Бишкек.">
+<meta name="description" content="Приглашение на свадьбу Б + А, 29 октября 2026, Altyn Kazyna, Бишкек.">
 <meta name="theme-color" content="#120b19">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -454,7 +454,7 @@ body.lit .names__b.foil { animation-delay: .25s; }
   <div class="intro__glow" aria-hidden="true"></div>
   <div class="intro__stage">
     <svg class="intro__candle" viewBox="0 0 120 250" aria-hidden="true" data-ornament="candle"></svg>
-    <p class="intro__names" id="intro-names" data-bind="names-plain">Боламан и Альбина</p>
+    <p class="intro__names" id="intro-names" data-bind="names-plain">Б + А</p>
     <button class="btn btn--gold" id="light" type="button">Зажечь свечу</button>
     <p class="intro__hint">Приглашение откроется, когда загорится свеча</p>
   </div>
@@ -470,12 +470,12 @@ body.lit .names__b.foil { animation-delay: .25s; }
     <div class="hero__inner wrap">
       <p class="save foil" lang="en">Save the date</p>
       <h1 class="names">
-        <span class="names__g foil" data-bind="groom">Боламан</span>
-        <span class="names__and">и</span>
-        <span class="names__b foil" data-bind="bride">Альбина</span>
+        <span class="names__g foil" data-bind="groom">Б</span>
+        <span class="names__and">+</span>
+        <span class="names__b foil" data-bind="bride">А</span>
       </h1>
       <p class="shine">«Ты заставляешь меня сиять»</p>
-      <p class="hero__date"><b data-bind="date-dots">31.10.2026</b><span data-bind="date-sub">суббота, начало в 16:00</span></p>
+      <p class="hero__date"><b data-bind="date-dots">29.10.2026</b><span data-bind="date-sub">четверг, начало в 16:00</span></p>
     </div>
     <a class="scroll" href="#invite"><span>Листайте вниз</span><i aria-hidden="true"></i></a>
   </header>
@@ -494,7 +494,7 @@ body.lit .names__b.foil { animation-delay: .25s; }
         <p class="when__day foil" data-bind="day">7</p>
         <div class="when__meta">
           <p class="when__month" data-bind="month-year">октября 2026</p>
-          <p class="when__sub" data-bind="weekday-time">суббота, 16:00</p>
+          <p class="when__sub" data-bind="weekday-time">четверг, 16:00</p>
         </div>
       </div>
 
@@ -518,8 +518,8 @@ body.lit .names__b.foil { animation-delay: .25s; }
   <section class="section where" id="where" aria-labelledby="where-h">
     <div class="wrap">
       <h2 class="h-sec" id="where-h">Где</h2>
-      <p class="where__venue foil" data-bind="venue">Dalida Hall</p>
-      <p class="where__addr" data-bind="address">улица Медерова, 43</p>
+      <p class="where__venue foil" data-bind="venue">Altyn Kazyna</p>
+      <p class="where__addr" data-bind="address">Бишкек</p>
       <p class="where__city" data-bind="city">Бишкек</p>
       <div class="where__actions">
         <a class="btn btn--gold" id="map-link" href="#" target="_blank" rel="noopener">Как добраться</a>
@@ -541,10 +541,10 @@ body.lit .names__b.foil { animation-delay: .25s; }
     <div class="wrap">
       <svg class="finale__candle" viewBox="0 0 120 250" aria-hidden="true" data-ornament="candle-lit"></svg>
       <h2 class="foil" id="finale-h">Ждём вас!</h2>
-      <p class="finale__sign">С любовью,<b data-bind="names-plain">Боламан и Альбина</b></p>
+      <p class="finale__sign">С любовью,<b data-bind="names-plain">Б + А</b></p>
     </div>
   </section>
-  <footer class="foot" data-bind="footer">31.10.2026, Бишкек</footer>
+  <footer class="foot" data-bind="footer">29.10.2026, Бишкек</footer>
 </main>
 
 <script>
@@ -553,18 +553,18 @@ body.lit .names__b.foil { animation-delay: .25s; }
    ========================================================== */
 const CONFIG = {
   // имена
-  groom: "Боламан",
-  bride: "Альбина",
+  groom: "Б",
+  bride: "А",
   // начало и окончание (часовой пояс Бишкека +06:00)
-  date: "2026-10-31T16:00:00+06:00",
-  endDate: "2026-10-31T23:00:00+06:00",
+  date: "2026-10-29T16:00:00+06:00",
+  endDate: "2026-10-29T23:00:00+06:00",
   // место
-  venue: "Dalida Hall",
-  address: "улица Медерова, 43",
+  venue: "Altyn Kazyna",
+  address: "",
   city: "Бишкек",
   // кнопка «Как добраться» (2ГИС) и запасная ссылка на Google Карты
-  map2gis: "https://2gis.kg/bishkek/firm/70000001039476658",
-  mapGoogle: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Dalida Hall, улица Медерова 43, Бишкек"),
+  map2gis: "https://2gis.kg/bishkek/firm/70000001019338833",
+  mapGoogle: "https://www.google.com/maps/search/?api=1&query=" + "42.887366,74.658898",
   // программа вечера
   timing: [
     { time: "16:00", title: "Сбор гостей" },
@@ -600,7 +600,7 @@ const CONFIG = {
   const D = local.getUTCDate(), M = local.getUTCMonth(), Y = local.getUTCFullYear();
   const time = pad(local.getUTCHours()) + ":" + pad(local.getUTCMinutes());
   const wd = weekdays[local.getUTCDay()];
-  const namesPlain = `${CONFIG.groom} и ${CONFIG.bride}`;
+  const namesPlain = `${CONFIG.groom} + ${CONFIG.bride}`;
   const dots = `${pad(D)}.${pad(M + 1)}.${Y}`;
 
   const binds = {
@@ -620,6 +620,7 @@ const CONFIG = {
   $$("[data-bind]").forEach((el) => { const k = el.dataset.bind; if (k in binds) el.textContent = binds[k]; });
   $(".hero__date b").setAttribute("aria-label", `${D} ${months[M]} ${Y}`);
   document.title = namesPlain;
+  if (!CONFIG.address) $(".where__addr").hidden = true;
 
   $("#map-link").href = CONFIG.map2gis || CONFIG.mapGoogle;
   $("#gmap-link").href = CONFIG.mapGoogle;
@@ -627,10 +628,10 @@ const CONFIG = {
 
   const gcal = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
   $("#cal-link").href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
-    "&text=" + encodeURIComponent(`Свадьба: ${namesPlain}`) +
+    "&text=" + encodeURIComponent(`Свадьба ${namesPlain}`) +
     "&dates=" + gcal(start) + "/" + gcal(end) +
     "&details=" + encodeURIComponent(`Сбор гостей в ${time}`) +
-    "&location=" + encodeURIComponent(`${CONFIG.venue}, ${CONFIG.address}, ${CONFIG.city}`);
+    "&location=" + encodeURIComponent([CONFIG.venue, CONFIG.address, CONFIG.city].filter(Boolean).join(", "));
 
   /* ---------- орнаменты ---------- */
   const candle = (lit, id) => `
@@ -755,7 +756,7 @@ const CONFIG = {
       $("#cal-link").hidden = true;
       if (now < end) {
         $("#done-title").textContent = "Праздник уже идёт";
-        $("#done-text").textContent = `Мы уже в зале. Ждём вас: ${CONFIG.venue}, ${CONFIG.address}.`;
+        $("#done-text").textContent = `Мы уже в зале. Ждём вас: ${[CONFIG.venue, CONFIG.address].filter(Boolean).join(", ")}.`;
       } else {
         $("#done-title").textContent = "Спасибо, что были с нами";
       }

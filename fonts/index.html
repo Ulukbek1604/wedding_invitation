@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Шрифты для Б + А</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comforter&family=Cormorant+SC:wght@400;500&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300&family=Great+Vibes&family=Forum&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Playfair+Display:ital,wght@0,400;1,400&family=Playfair+Display+SC&family=Lora:ital,wght@0,400;1,400&family=Yeseva+One&family=Jost:ital,wght@0,300;0,400;1,300&family=Oranienbaum&family=Alice&family=Bad+Script&family=Tenor+Sans&family=Prata&display=swap">
+<style>
+/* Layout: a single column of specimen cards on satin-ivory, each card is the hero of the invitation set in one font pairing. */
+:root {
+  color-scheme: light;
+  --bg: #efe6d8;
+  --card: #fbf7f0;
+  --ink: #3b3029;
+  --ink-soft: #6e5f53;
+  --gold: #b08d57;
+  --line: rgba(110, 90, 70, .22);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: linear-gradient(180deg, #f3ece1, var(--bg)); color: var(--ink);
+  font-family: "Cormorant Garamond", Georgia, serif; font-size: 18px; line-height: 1.5;
+  padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+header { max-width: 560px; margin: 0 auto 28px; text-align: center; }
+header h1 { font-family: "Forum", Georgia, serif; font-weight: 400; font-size: 28px; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 8px; text-wrap: balance; }
+header p { margin: 0; color: var(--ink-soft); }
+.list { display: grid; gap: 22px; max-width: 560px; margin: 0 auto; }
+.card {
+  background: var(--card); padding: 34px clamp(18px, 6vw, 40px) 30px; text-align: center;
+  display: grid; justify-items: center; gap: 14px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .7) inset, 0 18px 40px rgba(90, 65, 40, .12);
+}
+.tag { display: flex; align-items: baseline; gap: 10px; font-family: "Forum", Georgia, serif; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); }
+.tag b { font-weight: 400; color: var(--ink-soft); letter-spacing: .1em; }
+.s-script { font-size: calc(clamp(48px, 14vw, 72px) * var(--ss, 1)); line-height: 1.1; margin: 4px 0 0; font-weight: 400; }
+.s-mono { font-size: clamp(70px, 22vw, 112px); line-height: 1; margin: 0; white-space: nowrap; }
+.s-mono em { font-style: normal; color: var(--gold); font-size: .55em; vertical-align: .18em; padding-inline: .14em; }
+.s-caps { text-transform: uppercase; font-size: clamp(14px, 3.7vw, 17px); line-height: 1.5; margin: 0; text-wrap: balance; }
+.s-date { font-size: clamp(40px, 12vw, 58px); font-weight: 300; line-height: 1; margin: 6px 0 0; font-variant-numeric: oldstyle-nums; }
+.s-date i { font-style: normal; color: var(--gold); padding-inline: .2em; font-size: .6em; vertical-align: .2em; }
+.s-body { margin: 0; color: var(--ink-soft); max-width: 32ch; }
+.open {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 26px; margin-top: 8px;
+  font-family: "Forum", Georgia, serif; text-transform: uppercase; letter-spacing: .16em; font-size: 14px;
+  color: #fbf7f0; background: #b6a28a; text-decoration: none; transition: background .25s ease, transform .25s ease;
+}
+.open:hover { background: #9c876f; transform: translateY(-1px); }
+.open:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.hint { margin: 2px 0 0; font-size: 15px; color: var(--ink-soft); }
+.hint code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13px; background: rgba(176, 141, 87, .12); padding: 2px 6px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Варианты шрифтов</h1>
+  <p>Шесть наборов для приглашения. Нажмите «Открыть сайт», чтобы посмотреть набор на всём сайте с анимациями.</p>
+</header>
+<main class="list" id="list"></main>
+
+<script>
+(function () {
+  "use strict";
+  const SETS = [
+    { key: "balet", name: "Балет", note: "Comforter · Cormorant",
+      script: '"Comforter", cursive', ss: .92, scriptStyle: "normal", caps: '"Cormorant SC", serif', capsTrack: ".14em", body: '"Cormorant Infant", serif', mono: '"Cormorant Infant", serif', monoStyle: "italic", monoWeight: 300 },
+    { key: "klassika", name: "Классика", note: "Great Vibes · Forum · Cormorant",
+      script: '"Great Vibes", cursive', ss: 1, scriptStyle: "normal", caps: '"Forum", serif', capsTrack: ".14em", body: '"Cormorant Garamond", serif', mono: '"Forum", serif', monoStyle: "normal", monoWeight: 400 },
+    { key: "ardeko", name: "Ар-деко", note: "Playfair Display · Lora",
+      script: '"Playfair Display", serif', ss: .74, scriptStyle: "italic", caps: '"Playfair Display SC", serif', capsTrack: ".1em", body: '"Lora", serif', mono: '"Playfair Display", serif', monoStyle: "italic", monoWeight: 400 },
+    { key: "modern", name: "Модерн", note: "Yeseva One · Jost",
+      script: '"Yeseva One", serif', ss: .68, scriptStyle: "normal", caps: '"Jost", sans-serif', capsTrack: ".24em", body: '"Jost", sans-serif', mono: '"Yeseva One", serif', monoStyle: "normal", monoWeight: 400 },
+    { key: "antikva", name: "Русская антиква", note: "Oranienbaum · Alice",
+      script: '"Oranienbaum", serif', ss: .8, scriptStyle: "normal", caps: '"Oranienbaum", serif', capsTrack: ".16em", body: '"Alice", serif', mono: '"Oranienbaum", serif', monoStyle: "normal", monoWeight: 400 },
+    { key: "rukopis", name: "Рукопись", note: "Bad Script · Tenor Sans · Prata",
+      script: '"Bad Script", cursive', ss: .82, scriptStyle: "normal", caps: '"Tenor Sans", sans-serif', capsTrack: ".18em", body: '"Prata", serif', mono: '"Prata", serif', monoStyle: "normal", monoWeight: 400 }
+  ];
+  // on the Vercel site the link opens the main page; elsewhere it falls back to the live address
+  const base = /vercel\.app$/.test(location.hostname) || location.protocol === "file:" ? "../" : "https://weddinginvitation-kohl-gamma.vercel.app/";
+  const list = document.getElementById("list");
+  SETS.forEach((s, i) => {
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `
+      <p class="tag">Вариант ${i + 1}<b></b></p>
+      <p class="s-script">Save the date</p>
+      <p class="s-mono">Б<em>+</em>А</p>
+      <p class="s-caps">Приглашаем вас разделить с нами радость и счастье нашего свадебного дня</p>
+      <p class="s-date">29<i>•</i>10<i>•</i>26</p>
+      <p class="s-script" style="font-size: calc(clamp(38px, 11vw, 56px) * var(--ss, 1))">Ждём вас!</p>
+      <p class="s-body">Будем счастливы видеть вас рядом в этот особенный день</p>
+      <a class="open" target="_top"></a>
+      <p class="hint"></p>`;
+    card.querySelector(".tag b").textContent = `${s.name} — ${s.note}`;
+    card.style.setProperty("--ss", s.ss);
+    card.querySelectorAll(".s-script").forEach((el) => { el.style.fontFamily = s.script; el.style.fontStyle = s.scriptStyle; });
+    const mono = card.querySelector(".s-mono");
+    mono.style.fontFamily = s.mono; mono.style.fontStyle = s.monoStyle; mono.style.fontWeight = s.monoWeight;
+    const caps = card.querySelector(".s-caps");
+    caps.style.fontFamily = s.caps; caps.style.letterSpacing = s.capsTrack;
+    card.querySelector(".s-date").style.fontFamily = s.body;
+    card.querySelector(".s-body").style.fontFamily = s.body;
+    const a = card.querySelector(".open");
+    a.href = base + "?font=" + s.key;
+    a.textContent = "Открыть сайт";
+    card.querySelector(".hint").innerHTML = `Чтобы выбрать: напишите «вариант ${i + 1}» <br>или <code>font: "${s.key}"</code>`;
+    list.append(card);
+  });
+})();
+</script>
+</body>
+</html>

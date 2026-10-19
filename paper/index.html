@@ -2,10 +2,10 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Боламан и Альбина</title>
+<title>Б + А</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Приглашение на свадьбу Боламана и Альбины, 31 октября 2026, Бишкек">
+<meta name="description" content="Приглашение на свадьбу Б + А, 29 октября 2026, Бишкек">
 <meta name="theme-color" content="#F3F4F2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -410,14 +410,14 @@ fieldset[aria-invalid="true"] .choice span { box-shadow: inset 0 0 0 1px var(--e
 
 <header class="hero" id="top">
   <div class="plate">
-    <h1 class="names" aria-label="Боламан и Альбина">
-      <span class="n n1" data-bind="groom">Боламан</span>
-      <span class="amp" aria-hidden="true">и</span>
-      <span class="n n2" data-bind="bride">Альбина</span>
+    <h1 class="names" aria-label="Б + А">
+      <span class="n n1" data-bind="groom">Б</span>
+      <span class="amp" aria-hidden="true">+</span>
+      <span class="n n2" data-bind="bride">А</span>
     </h1>
     <p class="shine">Ты заставляешь меня сиять</p>
     <div class="hero-foot">
-      <p class="when"><span class="k latin" lang="en">Save the date</span><strong data-bind="date-dots">31.10.2026</strong></p>
+      <p class="when"><span class="k latin" lang="en">Save the date</span><strong data-bind="date-dots">29.10.2026</strong></p>
       <p class="where"><span class="k" data-bind="city">Бишкек</span><strong data-bind="time-start">16:00</strong></p>
       <a class="cue" href="#invite">Листайте вниз<i aria-hidden="true"></i></a>
     </div>
@@ -435,8 +435,8 @@ fieldset[aria-invalid="true"] .choice span { box-shadow: inset 0 0 0 1px var(--e
     <svg class="deckle top" viewBox="0 0 1000 10" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d=""/></svg>
     <div class="wrap when-row">
       <div class="when-date">
-        <h2 class="date-big" id="date-h"><span data-bind="date-short">31.10</span><span class="yr" data-bind="year">2026</span></h2>
-        <p class="date-meta"><strong data-bind="weekday">суббота</strong>, <span data-bind="time-range">16:00 — 23:00</span></p>
+        <h2 class="date-big" id="date-h"><span data-bind="date-short">29.10</span><span class="yr" data-bind="year">2026</span></h2>
+        <p class="date-meta"><strong data-bind="weekday">четверг</strong>, <span data-bind="time-range">16:00 — 23:00</span></p>
       </div>
       <div class="when-count" id="countdown">
         <div id="count-live">
@@ -464,10 +464,10 @@ fieldset[aria-invalid="true"] .choice span { box-shadow: inset 0 0 0 1px var(--e
   <section class="sec" id="venue" aria-labelledby="venue-h">
     <div class="wrap sec-grid">
       <div class="sec-head">
-        <h2 class="display venue-name" id="venue-h" data-bind="venue">Dalida Hall</h2>
+        <h2 class="display venue-name" id="venue-h" data-bind="venue">Altyn Kazyna</h2>
       </div>
       <div class="sec-body">
-        <p class="addr"><span data-bind="address">улица Медерова, 43</span><span data-bind="city">Бишкек</span></p>
+        <p class="addr"><span data-bind="address">Бишкек</span><span data-bind="city">Бишкек</span></p>
         <div class="actions">
           <a class="btn" id="map-link" href="#" target="_blank" rel="noopener">
             Как добраться
@@ -492,33 +492,33 @@ fieldset[aria-invalid="true"] .choice span { box-shadow: inset 0 0 0 1px var(--e
     <div class="wrap finale-grid">
       <div>
         <h2 class="display" id="finale-h">Ждём вас!</h2>
-        <p class="sign">С любовью, <span data-bind="couple">Боламан и Альбина</span></p>
+        <p class="sign">С любовью, <span data-bind="couple">Б + А</span></p>
       </div>
       <svg class="seal" id="seal" viewBox="0 0 240 240" role="img" aria-label="Тиснёная печать с инициалами"></svg>
     </div>
   </section>
 </main>
 
-<footer class="colophon" data-bind="colophon">31.10.2026 · Бишкек</footer>
+<footer class="colophon" data-bind="colophon">29.10.2026 · Бишкек</footer>
 
 <script>
 /* ======================================================================
    ВСЕ ДАННЫЕ СОБЫТИЯ — ЗДЕСЬ. Меняйте только этот блок.
    ====================================================================== */
 const CONFIG = {
-  groom: "Боламан",                       // имя жениха
-  bride: "Альбина",                            // имя невесты
+  groom: "Б",                       // имя жениха
+  bride: "А",                            // имя невесты
   // начало торжества (часовой пояс Бишкека, +06:00)
-  date: "2026-10-31T16:00:00+06:00",
+  date: "2026-10-29T16:00:00+06:00",
   // завершение вечера
-  endDate: "2026-10-31T23:00:00+06:00",
-  venue: "Dalida Hall",               // место
-  address: "улица Медерова, 43",      // адрес
+  endDate: "2026-10-29T23:00:00+06:00",
+  venue: "Altyn Kazyna",               // место
+  address: "",      // адрес
   city: "Бишкек",                           // город
   // кнопка «Как добраться» (2ГИС)
-  map2gis: "https://2gis.kg/bishkek/firm/70000001039476658",
+  map2gis: "https://2gis.kg/bishkek/firm/70000001019338833",
   // запасная ссылка на Google Карты
-  mapGoogle: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Dalida Hall, улица Медерова 43, Бишкек"),
+  mapGoogle: "https://www.google.com/maps/search/?api=1&query=" + "42.887366,74.658898",
   // программа вечера
   timing: [
     { time: "16:00", title: "Сбор гостей" },
@@ -557,7 +557,7 @@ const CONFIG = {
   const longDate = `${s.getUTCDate()} ${months[s.getUTCMonth()]} ${yyyy}`;
 
   /* ---------- заполнение страницы из CONFIG ---------- */
-  const couple = `${CONFIG.groom} и ${CONFIG.bride}`;
+  const couple = `${CONFIG.groom} + ${CONFIG.bride}`;
   document.title = couple;
   $(".names").setAttribute("aria-label", couple);
   const binds = {
@@ -571,8 +571,8 @@ const CONFIG = {
     "time-start": hm(s),
     "time-range": `${hm(s)} — ${hm(e)}`,
     "venue": CONFIG.venue,
-    "address": CONFIG.address,
-    "city": CONFIG.city,
+    "address": CONFIG.address || CONFIG.city,
+    "city": CONFIG.address ? CONFIG.city : "",
     "colophon": `${dd}.${mm}.${yyyy} · ${CONFIG.city}`
   };
   $$("[data-bind]").forEach((el) => { const v = binds[el.dataset.bind]; if (v != null) el.textContent = v; });
@@ -585,10 +585,10 @@ const CONFIG = {
   // Google Календарь
   const gcal = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
   $("#cal-link").href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
-    "&text=" + encodeURIComponent(`Свадьба: ${couple}`) +
+    "&text=" + encodeURIComponent(`Свадьба ${couple}`) +
     "&dates=" + gcal(start) + "/" + gcal(end) +
     "&details=" + encodeURIComponent(`Приглашаем вас разделить с нами радость и счастье нашего свадебного дня.\nКак добраться: ${CONFIG.map2gis || CONFIG.mapGoogle}`) +
-    "&location=" + encodeURIComponent(`${CONFIG.venue}, ${CONFIG.address}, ${CONFIG.city}`);
+    "&location=" + encodeURIComponent([CONFIG.venue, CONFIG.address, CONFIG.city].filter(Boolean).join(", "));
 
   // программа
   const tl = $("#timeline");
@@ -661,7 +661,7 @@ const CONFIG = {
       $("#count-done").hidden = false;
       if (now < end.getTime()) {
         $("#done-title").textContent = "Праздник уже идёт";
-        $("#done-text").textContent = `Мы ждём вас: ${CONFIG.venue}, ${CONFIG.address}.`;
+        $("#done-text").textContent = `Мы ждём вас: ${[CONFIG.venue, CONFIG.address].filter(Boolean).join(", ")}.`;
       } else {
         $("#done-title").textContent = "Спасибо, что были с нами";
         $("#done-text").textContent = `${longDate} — день, который мы будем помнить всегда.`;
