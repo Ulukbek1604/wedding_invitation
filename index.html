@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#e9dcc8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comforter&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" id="font-link">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400;1,500&family=Great+Vibes&display=swap" id="font-link">
 <style>
 /* Layout: one narrow "veil" column of ivory floating over a painted satin backdrop; flowers and butterflies break its edges. */
 :root {
@@ -25,20 +25,22 @@
   --line: rgba(110, 90, 70, .28);
 
   /* default font set «Балет»; other sets are switched in the script (?font=...) */
-  --f-script: "Comforter", "Segoe Script", cursive;
-  --f-caps: "Comforter", "Segoe Script", cursive;
-  --f-body: "Comforter", "Segoe Script", cursive;
+  --f-script: "Cormorant Garamond", Georgia, serif;
+  --f-caps: "Cormorant Garamond", Georgia, serif;
+  --f-body: "Cormorant Garamond", Georgia, serif;
+  --f-accent: "Great Vibes", "Segoe Script", cursive;
+  --text-style: italic;
   --f-mono: "Cormorant Garamond", Georgia, serif;
-  --script-scale: .92;
-  --script-style: normal;
+  --script-scale: .8;
+  --script-style: italic;
   --script-weight: 400;
   --mono-style: italic;
   --mono-weight: 400;
   --caps-track: .01em;
   --caps-transform: none;
-  --caps-scale: 1.7;
-  --em-style: normal;
-  --body-scale: 1.45;
+  --caps-scale: 1.45;
+  --em-style: italic;
+  --body-scale: 1.25;
 
   --ease-out: cubic-bezier(.16, 1, .3, 1);
   --ease-io: cubic-bezier(.65, 0, .35, 1);
@@ -52,6 +54,7 @@ body {
   background: var(--satin);
   color: var(--ink);
   font-family: var(--f-body);
+  font-style: var(--text-style, normal);
   font-size: calc(19px * var(--body-scale));
   line-height: 1.55;
   overflow-x: clip;
@@ -149,7 +152,7 @@ body.locked { overflow: hidden; }
   transition: transform 1.1s var(--ease-out) 1.05s;
 }
 .env__card b { font-family: var(--f-mono); font-style: var(--mono-style); font-weight: var(--mono-weight); font-size: clamp(40px, 11vw, 62px); line-height: 1; color: var(--ink); }
-.env__card b em { font-style: normal; color: var(--gold); font-size: .6em; vertical-align: .15em; padding-inline: .12em; }
+.env__card b em { font-family: var(--f-accent); font-style: normal; color: var(--gold); font-size: .8em; vertical-align: .06em; padding-inline: .12em; }
 .env__card small { font-family: var(--f-caps); font-size: calc(12px * var(--caps-scale)); letter-spacing: calc(var(--caps-track) * 2); color: var(--gold); }
 .intro.opening .env__card { transform: translateY(-58%); }
 .env__front {
@@ -263,7 +266,7 @@ section {
   font-size: clamp(96px, 30vw, 168px); line-height: 1;
   margin: 24px 0 0; white-space: nowrap;
 }
-.names .amp { font-size: .55em; padding-inline: .14em; color: var(--gold); vertical-align: .18em; font-style: normal; }
+.names .amp { font-family: var(--f-accent); font-size: .78em; padding-inline: .12em; color: var(--gold); vertical-align: .08em; font-style: normal; }
 .scroll-cue { display: grid; justify-items: center; gap: 12px; margin-top: 30px; color: var(--ink-soft); text-decoration: none; }
 .scroll-cue i { position: relative; display: block; width: 1px; height: 46px; background: var(--line); overflow: hidden; }
 .scroll-cue i::after { content: ""; position: absolute; left: -1px; width: 3px; height: 14px; border-radius: 2px; background: var(--ink-soft); animation: travel 2.2s var(--ease-io) infinite; }
@@ -602,10 +605,10 @@ const CONFIG = {
   /* ---------- font sets (CONFIG.font, or ?font=... in the link) ---------- */
   const FONT_SETS = {
     balet: {
-      url: "family=Comforter&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500",
-      vars: { script: '"Comforter", cursive', caps: '"Comforter", cursive', body: '"Comforter", cursive', mono: '"Cormorant Garamond", Georgia, serif',
-              scriptScale: .92, scriptStyle: "normal", scriptWeight: 400, monoStyle: "italic", monoWeight: 400, capsTrack: ".01em", bodyScale: 1.45,
-              capsTransform: "none", capsScale: 1.7, emStyle: "normal" }
+      url: "family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400;1,500&family=Great+Vibes",
+      vars: { script: '"Cormorant Garamond", Georgia, serif', caps: '"Cormorant Garamond", Georgia, serif', body: '"Cormorant Garamond", Georgia, serif', mono: '"Cormorant Garamond", Georgia, serif',
+              scriptScale: .8, scriptStyle: "italic", scriptWeight: 400, monoStyle: "italic", monoWeight: 400, capsTrack: ".01em", bodyScale: 1.25,
+              capsTransform: "none", capsScale: 1.45, emStyle: "italic", textStyle: "italic" }
     },
     klassika: {
       url: "family=Great+Vibes&family=Forum&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400",
@@ -649,6 +652,7 @@ const CONFIG = {
     st.setProperty("--caps-transform", v.capsTransform || "uppercase");
     st.setProperty("--caps-scale", v.capsScale || 1);
     st.setProperty("--em-style", v.emStyle || "italic");
+    st.setProperty("--text-style", v.textStyle || "normal");
   })();
 
   /* ---------- fill content from CONFIG ---------- */

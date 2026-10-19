@@ -68,8 +68,8 @@ header p { margin: 0; color: var(--ink-soft); }
 (function () {
   "use strict";
   const SETS = [
-    { key: "balet", name: "Балет", note: "весь текст Comforter, монограмма Cormorant Garamond",
-      script: '"Comforter", cursive', ss: .92, scriptStyle: "normal", caps: '"Comforter", cursive', capsTrack: ".01em", capsTransform: "none", capsScale: 1.7, bodyScale: 1.45, body: '"Comforter", cursive', mono: '"Cormorant Garamond", serif', monoStyle: "italic", monoWeight: 400 },
+    { key: "balet", name: "Руслан и Айдана", note: "весь текст Cormorant Garamond курсив, золотой плюс Great Vibes",
+      script: '"Cormorant Garamond", serif', ss: .8, scriptStyle: "italic", caps: '"Cormorant Garamond", serif', capsTrack: ".01em", capsTransform: "none", capsScale: 1.45, bodyScale: 1.25, body: '"Cormorant Garamond", serif', mono: '"Cormorant Garamond", serif', monoStyle: "italic", monoWeight: 400 },
     { key: "klassika", name: "Классика", note: "Great Vibes · Forum · Cormorant",
       script: '"Great Vibes", cursive', ss: 1, scriptStyle: "normal", caps: '"Forum", serif', capsTrack: ".14em", body: '"Cormorant Garamond", serif', mono: '"Forum", serif', monoStyle: "normal", monoWeight: 400 },
     { key: "ardeko", name: "Ар-деко", note: "Playfair Display · Lora",
@@ -103,6 +103,7 @@ header p { margin: 0; color: var(--ink-soft); }
     mono.style.fontFamily = s.mono; mono.style.fontStyle = s.monoStyle; mono.style.fontWeight = s.monoWeight;
     const caps = card.querySelector(".s-caps");
     caps.style.fontFamily = s.caps; caps.style.letterSpacing = s.capsTrack;
+    if (s.key === "balet") card.querySelectorAll(".s-caps, .s-date, .s-body").forEach((el) => { el.style.fontStyle = "italic"; });
     if (s.capsTransform) { caps.style.textTransform = s.capsTransform; caps.style.fontSize = `calc(clamp(14px, 3.7vw, 17px) * ${s.capsScale})`; caps.style.lineHeight = "1.25"; }
     card.querySelector(".s-date").style.fontFamily = s.body;
     card.querySelector(".s-body").style.fontFamily = s.body;
