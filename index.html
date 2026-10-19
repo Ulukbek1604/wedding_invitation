@@ -595,7 +595,7 @@ body.ready .music { opacity: 1; transform: none; }
   </div>
 </main>
 
-<audio id="music" src="audio/canon.mp3" preload="none" loop></audio>
+<audio id="music" preload="none" loop></audio>
 <button class="music" id="music-btn" type="button" aria-label="Включить музыку" aria-pressed="false">
   <span class="music__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
 </button>
@@ -623,6 +623,9 @@ const CONFIG = {
     { time: "17:00", title: "Начало торжества" },
     { time: "23:00", title: "Завершение вечера" }
   ],
+  // музыка: файл песни в папке audio; если его нет, играет запасной трек
+  music: "audio/cinnamon-girl.mp3",
+  musicFallback: "audio/canon.mp3",
   // набор шрифтов: "balet", "klassika", "ardeko", "modern", "antikva", "rukopis"
   // посмотреть все наборы: страница /fonts
   font: "balet"
@@ -967,6 +970,13 @@ const CONFIG = {
   /* ---------- music: starts with the envelope, toggled by the button ---------- */
   const music = $("#music");
   const musicBtn = $("#music-btn");
+  // use the song if its file is on the site, otherwise the fallback track
+  music.src = CONFIG.musicFallback;
+  if (CONFIG.music && location.protocol !== "file:") {
+    fetch(CONFIG.music, { method: "HEAD" }).then((r) => {
+      if (r.ok && music.paused) music.src = CONFIG.music;
+    }).catch(() => {});
+  }
   let wantMusic = false, fadeRaf = 0;
   function fadeTo(target, ms) {
     cancelAnimationFrame(fadeRaf);
